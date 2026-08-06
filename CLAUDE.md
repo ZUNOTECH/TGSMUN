@@ -30,8 +30,7 @@ Deliberately single-theme (no light/dark variants).
 
 ## Git / deploy
 
-- Work on branch `claude/model-un-school-website-hzro7s`, then sync `main` to it
-  (`git push origin claude/model-un-school-website-hzro7s:main`) — Vercel deploys production from `main`.
+- Single-branch flow: commit and push directly to `main` — Vercel deploys production from it.
 - Verify changes with Playwright screenshots (Chromium at `/opt/pw-browsers/chromium`) before pushing.
 
 ## Remaining placeholders (see README.md for the full list)
