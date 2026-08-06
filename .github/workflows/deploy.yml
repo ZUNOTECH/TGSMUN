@@ -1,4 +1,4 @@
-name: Deploy to GitHub Pages
+name: Sync main for Vercel production
 
 on:
   push:
@@ -10,17 +10,16 @@ permissions:
   contents: write
 
 concurrency:
-  group: pages
+  group: sync-main
   cancel-in-progress: true
 
 jobs:
-  deploy:
+  sync:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-      - name: Publish to gh-pages
-        uses: peaceiris/actions-gh-pages@v4
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .
+          fetch-depth: 0
+      - name: Push to main
+        run: git push --force origin HEAD:main
