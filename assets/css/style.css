@@ -318,7 +318,7 @@ body::after {
   aspect-ratio: 1;
   pointer-events: none;
 }
-.hero-inner { position: relative; z-index: 2; padding-bottom: clamp(30px, 4vw, 60px); }
+.hero-inner { position: relative; z-index: 2; padding-bottom: clamp(30px, 4vw, 60px); max-width: none; margin: 0; }
 
 .hero-meta-top {
   display: flex; flex-wrap: wrap; gap: 10px 28px;
@@ -337,12 +337,12 @@ body::after {
 
 .hero-bottom {
   display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 40px;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 28px;
   margin-top: clamp(28px, 4vw, 54px);
 }
-.hero-sub { max-width: 400px; font-size: 0.98rem; color: var(--ink-70); }
+.hero-sub { max-width: 440px; font-size: 0.98rem; color: var(--ink-70); }
 .hero-sub b { color: var(--ink); }
 .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
 
