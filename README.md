@@ -2,26 +2,30 @@
 
 Static website for the TGS Model United Nations conference. No build step, no dependencies — plain HTML/CSS/JS that deploys anywhere (GitHub Pages, Cloudflare Pages, Netlify).
 
+**Design:** international-style diplomatic editorial — archival paper ground, cobalt plates, vermilion stamp accent, condensed display type (Anton / Archivo / Instrument Serif via Google Fonts).
+
+**Motion:** preloader sequence (first visit per tab), cobalt curtain page transitions, inertia smooth-scrolling, split-text word reveals, canvas globe with animated connection arcs, pinned horizontal-scroll committees track, rolling odometer countdown, magnetic buttons, custom cursor, marquee, scroll-triggered reveals. All hand-rolled vanilla JS — no libraries. `prefers-reduced-motion` disables everything gracefully.
+
 ## Pages
 
 | Page | Contents |
 |---|---|
-| `index.html` | Hero + countdown, stats, about + SG letter, committee preview, schedule, FAQs, contact, footer |
-| `committees.html` | All 7 committees with agendas, difficulty tags and background-guide slots |
-| `secretariat.html` | Executive board + heads of department cards |
-| `register.html` | Fees, registration steps, cancellation policy, form embed slot |
+| `index.html` | Hero + globe + countdown + marquee, stats band, about + SG letter plate, pinned horizontal committees track, schedule, FAQs, CTA, contact, footer |
+| `committees.html` | All 7 committees — agendas, difficulty tags, delegation sizes, guide slots |
+| `secretariat.html` | Executive board + heads of department |
+| `register.html` | Fees, four-step process, form embed slot, cancellation policy |
+| `gallery.html` | Photo grid (placeholder plates ready for real images) + past-session index |
 
 ## Things to customize (placeholders)
 
-1. **Conference date** — edit `CONFERENCE_DATE` at the top of `assets/js/main.js` (drives the countdown). Also update dates mentioned in `index.html` and `register.html`.
-2. **School name** — the site says "TGS" throughout; search-and-replace with the school's full name.
-3. **Secretariat names** — replace the `Name Here` placeholders in `secretariat.html`. To use real photos, swap each `<div class="sec-avatar">XX</div>` for `<img class="sec-avatar" src="...">`.
-4. **Registration form** — create a Google Form and either paste its embed iframe into the marked block in `register.html`, or point the Register buttons at the form URL.
-5. **Contact details** — email, phone and venue in `index.html` (contact section) and footers.
+1. **Conference date** — `CONFERENCE_DATE` at the top of `assets/js/main.js` (drives the countdown); also the dates written in `index.html` / `register.html`.
+2. **School name** — the site says "TGS" throughout; search-and-replace with the full school name.
+3. **Secretariat** — replace `Name Here` entries in `secretariat.html`.
+4. **Registration form** — embed your Google Form in the marked block in `register.html`, or point the Register buttons at the form URL.
+5. **Contact details** — email/phone/venue in `index.html` and footers.
 6. **Social links** — Instagram/LinkedIn placeholders in every footer.
-7. **Committees & agendas** — edit cards in `index.html` and full entries in `committees.html`.
-8. **Fees & policy** — amounts and dates in `register.html`.
-9. **Stats** — delegate/school counts in `index.html` (`data-count` attributes).
+7. **Gallery photos** — swap each `<div class="fill ph-N">` in `gallery.html` for `<img class="fill" src="...">`.
+8. **Committees, fees, stats, past-session themes** — plain HTML edits in the respective pages.
 
 ## Local preview
 
@@ -32,4 +36,4 @@ python3 -m http.server 8000
 
 ## Deploying to GitHub Pages
 
-Repo Settings → Pages → Deploy from branch → select the default branch, root folder. The site is served as-is.
+Repo Settings → Pages → Deploy from branch → default branch, root folder.

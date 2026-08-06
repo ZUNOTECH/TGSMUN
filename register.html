@@ -4,132 +4,179 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Register — TGSMUN 2026</title>
-  <meta name="description" content="Register as a delegate or delegation for TGSMUN 2026. Early-bird pricing available." />
+  <meta name="description" content="Register as a delegate or delegation for TGSMUN 2026. Closes 20 September." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230a1428' stroke='%23c9a24b' stroke-width='4'/><text x='50' y='63' font-size='38' text-anchor='middle' fill='%23e3c883' font-family='Georgia'>T</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231e3fae'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='%23e9e8df' font-family='Arial Narrow,sans-serif' font-weight='bold'>T</text></svg>" />
 </head>
 <body>
 
-  <header class="nav scrolled">
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="loader-word" aria-hidden="true">
+        <span style="animation-delay:.05s">T</span><span style="animation-delay:.1s">G</span><span style="animation-delay:.15s">S</span><span style="animation-delay:.2s">M</span><span style="animation-delay:.25s">U</span><span style="animation-delay:.3s">N</span>
+      </div>
+      <div class="loader-count">Convening — 000%</div>
+    </div>
+  </div>
+  <div class="curtain"></div>
+
+  <header class="nav">
     <div class="container nav-inner">
       <a href="index.html" class="brand">
         <span class="brand-mark">T</span>
-        <span class="brand-text"><strong>TGSMUN</strong><span>Est. 2019 · Edition VI</span></span>
+        <span class="brand-text"><strong>TGSMUN</strong><span>Sixth Session · 2026</span></span>
       </a>
       <nav class="nav-links">
         <a href="index.html">Home</a>
-        <a href="index.html#about">About</a>
         <a href="committees.html">Committees</a>
         <a href="secretariat.html">Secretariat</a>
-        <a href="index.html#schedule">Schedule</a>
-        <a href="index.html#faq">FAQs</a>
-        <a href="register.html" class="btn btn-gold btn-sm">Register</a>
+        <a href="gallery.html">Archive</a>
+        <a href="register.html" class="btn btn--solid btn--sm active">Register <span class="arr">→</span></a>
       </nav>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </header>
 
+  <div class="menu-overlay">
+    <a href="index.html"><i>01</i> Home</a>
+    <a href="committees.html"><i>02</i> Committees</a>
+    <a href="secretariat.html"><i>03</i> Secretariat</a>
+    <a href="gallery.html"><i>04</i> Archive</a>
+    <a href="register.html"><i>05</i> Register</a>
+  </div>
+
   <section class="page-hero">
+    <span class="bg-no" aria-hidden="true">→</span>
     <div class="container">
-      <span class="eyebrow">TGSMUN 2026 · 10–11 October</span>
-      <h1>Delegate <em style="color:var(--gold-light)">Registration</em></h1>
-      <p>Registrations close 20 September 2026 or when seats fill — whichever comes first. Committee preferences are honoured first-come, first-served.</p>
+      <div class="kicker">
+        <span class="label label--verm">Registration open</span>
+        <span class="label">Closes 20 Sept — or when seats fill</span>
+      </div>
+      <h1 class="display split">Claim your<br /><span class="serif-i">placard.</span></h1>
+      <p class="page-sub rv">
+        Committee preferences are honoured strictly first-come, first-served.
+        Payment details follow by email once your form is in.
+      </p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
-      <div class="center reveal">
-        <span class="eyebrow">Fees</span>
-        <h2 class="section-title">Choose your <em>registration</em></h2>
+      <div class="sec-head rv">
+        <span class="idx">01</span>
+        <span class="label">Fees</span>
+        <span class="grow"></span>
+        <span class="label">Both days · meals included</span>
       </div>
-
-      <div class="register-grid">
-        <div class="price-card reveal">
-          <h3>Individual Delegate</h3>
-          <div class="price">₹1,200</div>
-          <div class="price-note">per delegate · both days</div>
+      <div class="price-grid">
+        <div class="price-card rv">
+          <span class="label">Solo</span>
+          <div class="tier display">Individual Delegate</div>
+          <div class="amount">₹1,200<sub> / delegate</sub></div>
+          <p class="per">Both days · lunch &amp; refreshments included</p>
           <ul>
-            <li>Choice of 3 committee preferences</li>
-            <li>Background guide & delegate handbook</li>
-            <li>Lunch & refreshments on both days</li>
+            <li>Choice of three committee preferences</li>
+            <li>Background guide &amp; delegate handbook</li>
             <li>Delegate kit and certificate</li>
             <li>Access to the delegate social</li>
           </ul>
-          <a class="btn btn-gold" href="#form">Register Individually</a>
+          <a class="btn" href="#form">Register Solo <span class="arr">→</span></a>
         </div>
 
-        <div class="price-card featured reveal">
-          <h3>School Delegation</h3>
-          <div class="price">₹1,000</div>
-          <div class="price-note">per delegate · minimum 8 delegates + 1 faculty advisor</div>
+        <div class="price-card price-card--featured rv rv-d1">
+          <span class="feat-flag">Best Value</span>
+          <span class="label">Schools</span>
+          <div class="tier display">School Delegation</div>
+          <div class="amount">₹1,000<sub> / delegate</sub></div>
+          <p class="per">Minimum 8 delegates + 1 faculty advisor</p>
           <ul>
-            <li>Everything in Individual, plus:</li>
+            <li>Everything in Individual, plus —</li>
             <li>Priority committee allotments</li>
             <li>Eligibility for the Best Delegation trophy</li>
             <li>Complimentary faculty advisor pass</li>
             <li>Reserved delegation seating at ceremonies</li>
           </ul>
-          <a class="btn btn-gold" href="#form">Register a Delegation</a>
+          <a class="btn" href="#form">Register a Delegation <span class="arr">→</span></a>
         </div>
-      </div>
-
-      <div class="info-note reveal" id="form">
-        <b>Registration form:</b> replace this block with your embedded Google Form once it is created —
-        paste the form's embed <code>&lt;iframe&gt;</code> here, or link the "Register" buttons above
-        directly to the form URL. Payment details (UPI / bank transfer) are shared on the confirmation
-        email after the form is submitted.
-      </div>
-
-      <div class="info-note reveal">
-        <b>Cancellation policy:</b> full refund until 25 September 2026; 50% refund thereafter until
-        1 October; no refunds within 10 days of the conference. Substitutions within a delegation are
-        free at any time.
       </div>
     </div>
   </section>
 
-  <section class="section section-alt">
+  <section class="section" style="padding-top:0">
     <div class="container">
-      <div class="center reveal">
-        <span class="eyebrow">How it works</span>
-        <h2 class="section-title">Four steps to the <em>floor</em></h2>
+      <div class="sec-head rv">
+        <span class="idx">02</span>
+        <span class="label">How it works</span>
+        <span class="grow"></span>
+        <span class="label label--verm">Four steps</span>
       </div>
-      <div class="stats" style="margin-top:56px">
-        <div class="stat reveal"><b>1</b><span>Submit the form</span></div>
-        <div class="stat reveal"><b>2</b><span>Pay & confirm</span></div>
-        <div class="stat reveal"><b>3</b><span>Receive allotment</span></div>
-        <div class="stat reveal"><b>4</b><span>Research & debate</span></div>
+      <div class="steps-grid rv">
+        <div class="step-cell"><span class="n">1</span><b>Submit the form</b><span>Tell us who you are and where you want to sit.</span></div>
+        <div class="step-cell"><span class="n">2</span><b>Pay &amp; confirm</b><span>Payment details arrive by email within 48 hours.</span></div>
+        <div class="step-cell"><span class="n">3</span><b>Receive allotment</b><span>Country, portfolio and background guide — two weeks out.</span></div>
+        <div class="step-cell"><span class="n">4</span><b>Research &amp; debate</b><span>Draft your position paper. See you on the floor.</span></div>
+      </div>
+
+      <div id="form" style="margin-top: clamp(40px, 5vw, 70px)">
+        <div class="note-plate rv">
+          <b>Registration form —</b> replace this block with your embedded Google Form
+          (paste the form's <code>&lt;iframe&gt;</code> here), or point the buttons above
+          directly at the form URL.
+        </div>
+        <div class="note-plate rv">
+          <b>Cancellation policy —</b> full refund until 25 September; 50% until 1 October;
+          none within 10 days of the conference. Substitutions within a delegation are free
+          at any time.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta">
+    <div class="container">
+      <span class="label rv">250+ seats · 30+ schools · one floor</span>
+      <h2 class="cta-title display split">
+        The gavel <span class="serif-i">waits</span><br />
+        <span class="outline">for no one.</span>
+      </h2>
+      <div class="cta-row rv">
+        <a href="#form" class="btn btn--paper">Go to the Form <span class="arr">→</span></a>
+        <p class="cta-note">Questions first? Write to secretariat@tgsmun.in — we reply within 48 hours.</p>
       </div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <h2 class="footer-title display"><a href="#form">See you on<br />the floor →</a></h2>
+      <div class="footer-cols">
         <div>
-          <a href="index.html" class="brand">
-            <span class="brand-mark">T</span>
-            <span class="brand-text"><strong>TGSMUN</strong><span>Model United Nations</span></span>
-          </a>
-          <p>The flagship Model United Nations conference of TGS — fostering diplomacy, debate and dialogue among young leaders since 2019.</p>
+          <span class="label">TGSMUN</span>
+          <p class="footer-desc">The flagship Model United Nations conference of TGS — diplomacy, debate and dialogue since 2019.</p>
         </div>
         <div>
-          <h4>Conference</h4>
+          <span class="label">Conference</span>
           <ul>
             <li><a href="index.html#about">About</a></li>
             <li><a href="committees.html">Committees</a></li>
             <li><a href="secretariat.html">Secretariat</a></li>
             <li><a href="index.html#schedule">Schedule</a></li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </div>
         <div>
-          <h4>Follow Us</h4>
+          <span class="label">Delegates</span>
+          <ul>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="index.html#faq">FAQs</a></li>
+            <li><a href="gallery.html">Archive</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="label">Elsewhere</span>
           <ul>
             <li><a href="#" rel="noopener">Instagram</a></li>
             <li><a href="#" rel="noopener">LinkedIn</a></li>
@@ -138,8 +185,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 TGSMUN. All rights reserved.</span>
-        <span>Organised by the students of TGS.</span>
+        <span>© 2026 TGSMUN</span>
+        <span>Organised by the students of TGS</span>
       </div>
     </div>
   </footer>

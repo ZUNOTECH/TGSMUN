@@ -4,225 +4,227 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Committees — TGSMUN 2026</title>
-  <meta name="description" content="Explore the seven committees of TGSMUN 2026 — agendas, difficulty levels and background guides." />
+  <meta name="description" content="Seven committees, seven world stages — the agendas of TGSMUN 2026." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='46' fill='%230a1428' stroke='%23c9a24b' stroke-width='4'/><text x='50' y='63' font-size='38' text-anchor='middle' fill='%23e3c883' font-family='Georgia'>T</text></svg>" />
-  <style>
-    .committee-full {
-      display: grid;
-      grid-template-columns: 220px 1fr auto;
-      gap: 32px;
-      align-items: start;
-      padding: 40px 36px;
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      margin-bottom: 22px;
-    }
-    .committee-full .abbr {
-      font-family: var(--font-display);
-      font-size: 2.4rem;
-      color: var(--gold-light);
-      line-height: 1.1;
-    }
-    .committee-full .full-name { font-size: 0.85rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--blue-light); margin-top: 6px; }
-    .committee-full h3 { font-size: 1.25rem; margin-bottom: 10px; font-family: var(--font-body); font-weight: 600; }
-    .committee-full p { color: var(--ink-dim); font-size: 0.95rem; }
-    .committee-full .side { display: flex; flex-direction: column; gap: 14px; align-items: flex-end; }
-    .committee-full .meta { font-size: 0.8rem; color: var(--ink-dim); text-align: right; }
-    @media (max-width: 860px) {
-      .committee-full { grid-template-columns: 1fr; gap: 18px; }
-      .committee-full .side { align-items: flex-start; }
-      .committee-full .meta { text-align: left; }
-    }
-  </style>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%231e3fae'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='%23e9e8df' font-family='Arial Narrow,sans-serif' font-weight='bold'>T</text></svg>" />
 </head>
 <body>
 
-  <header class="nav scrolled">
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="loader-word" aria-hidden="true">
+        <span style="animation-delay:.05s">T</span><span style="animation-delay:.1s">G</span><span style="animation-delay:.15s">S</span><span style="animation-delay:.2s">M</span><span style="animation-delay:.25s">U</span><span style="animation-delay:.3s">N</span>
+      </div>
+      <div class="loader-count">Convening — 000%</div>
+    </div>
+  </div>
+  <div class="curtain"></div>
+
+  <header class="nav">
     <div class="container nav-inner">
       <a href="index.html" class="brand">
         <span class="brand-mark">T</span>
-        <span class="brand-text"><strong>TGSMUN</strong><span>Est. 2019 · Edition VI</span></span>
+        <span class="brand-text"><strong>TGSMUN</strong><span>Sixth Session · 2026</span></span>
       </a>
       <nav class="nav-links">
         <a href="index.html">Home</a>
-        <a href="index.html#about">About</a>
         <a href="committees.html" class="active">Committees</a>
         <a href="secretariat.html">Secretariat</a>
-        <a href="index.html#schedule">Schedule</a>
-        <a href="index.html#faq">FAQs</a>
-        <a href="register.html" class="btn btn-gold btn-sm">Register</a>
+        <a href="gallery.html">Archive</a>
+        <a href="register.html" class="btn btn--solid btn--sm">Register <span class="arr">→</span></a>
       </nav>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </header>
 
+  <div class="menu-overlay">
+    <a href="index.html"><i>01</i> Home</a>
+    <a href="committees.html"><i>02</i> Committees</a>
+    <a href="secretariat.html"><i>03</i> Secretariat</a>
+    <a href="gallery.html"><i>04</i> Archive</a>
+    <a href="register.html"><i>05</i> Register</a>
+  </div>
+
   <section class="page-hero">
+    <span class="bg-no" aria-hidden="true">07</span>
     <div class="container">
-      <span class="eyebrow">TGSMUN 2026</span>
-      <h1>Committees & <em style="color:var(--gold-light)">Agendas</em></h1>
-      <p>Seven committees spanning classic UN debate, Indian political simulation, crisis and press. Background guides are released to registered delegates two weeks before the conference.</p>
+      <div class="kicker">
+        <span class="label label--verm">TGSMUN 2026</span>
+        <span class="label">Committees &amp; Agendas</span>
+      </div>
+      <h1 class="display split">Seven rooms,<br /><span class="serif-i">seven world stages.</span></h1>
+      <p class="page-sub rv">
+        Classic UN debate, Indian political theatre, continuous crisis and a free press.
+        Background guides reach registered delegates two weeks before the first gavel.
+      </p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
 
-      <div class="committee-full reveal" id="unga">
+      <div class="com-row rv" id="unga">
+        <span class="no">C·01</span>
         <div>
-          <div class="abbr">UNGA</div>
-          <div class="full-name">General Assembly — DISEC</div>
-        </div>
-        <div>
-          <h3>Regulation of autonomous weapons systems and AI in modern warfare</h3>
-          <p>The First Committee confronts one of the defining security questions of the decade: as lethal autonomous weapons move from science fiction to the battlefield, can the international community agree on meaningful human control? Delegates will weigh military necessity against humanitarian law, and draft a framework the great powers might actually sign.</p>
+          <h2>UNGA — DISEC</h2>
+          <p class="full">United Nations General Assembly · First Committee</p>
+          <span class="agenda-tag">Agenda</span>
+          <p class="agenda">Regulation of autonomous weapons systems and AI in modern warfare.</p>
+          <p class="desc">As lethal autonomous weapons move from science fiction to the battlefield, can the international community agree on meaningful human control? Delegates weigh military necessity against humanitarian law — and draft a framework the great powers might actually sign.</p>
         </div>
         <div class="side">
-          <span class="committee-tag tag-beginner">Beginner Friendly</span>
-          <div class="meta">Double delegation<br />~50 delegates</div>
-          <a href="register.html" class="btn btn-ghost btn-sm">Background Guide — Soon</a>
+          <span class="diff diff--1">Beginner Friendly</span>
+          <div class="com-meta"><b>Double delegation</b><span>~50 delegates</span></div>
+          <a href="register.html" class="btn btn--sm">Guide — Soon</a>
         </div>
       </div>
 
-      <div class="committee-full reveal" id="unsc">
+      <div class="com-row rv" id="unsc">
+        <span class="no">C·02</span>
         <div>
-          <div class="abbr">UNSC</div>
-          <div class="full-name">United Nations Security Council</div>
-        </div>
-        <div>
-          <h3>The situation in the Arctic: sovereignty, security and shipping lanes</h3>
-          <p>As polar ice retreats, new trade routes and untapped resources are redrawing the map of great-power competition. In a fifteen-member council where every veto matters, delegates must navigate overlapping territorial claims, militarisation of the High North and the rights of indigenous communities.</p>
+          <h2>UNSC</h2>
+          <p class="full">United Nations Security Council</p>
+          <span class="agenda-tag">Agenda</span>
+          <p class="agenda">The situation in the Arctic: sovereignty, security and shipping lanes.</p>
+          <p class="desc">Polar ice retreats; trade routes and untapped resources redraw the map of great-power competition. In a fifteen-member chamber where every veto matters, delegates navigate territorial claims, militarisation of the High North and the rights of indigenous communities.</p>
         </div>
         <div class="side">
-          <span class="committee-tag tag-advanced">Advanced</span>
-          <div class="meta">Single delegation<br />15 delegates</div>
-          <a href="register.html" class="btn btn-ghost btn-sm">Background Guide — Soon</a>
+          <span class="diff diff--3">Advanced</span>
+          <div class="com-meta"><b>Single delegation</b><span>15 delegates</span></div>
+          <a href="register.html" class="btn btn--sm">Guide — Soon</a>
         </div>
       </div>
 
-      <div class="committee-full reveal" id="unhrc">
+      <div class="com-row rv" id="unhrc">
+        <span class="no">C·03</span>
         <div>
-          <div class="abbr">UNHRC</div>
-          <div class="full-name">United Nations Human Rights Council</div>
-        </div>
-        <div>
-          <h3>Protecting the rights of climate refugees and displaced populations</h3>
-          <p>No international treaty yet recognises the person displaced by a drowning coastline. The Council will examine the legal vacuum around climate-induced displacement, burden-sharing between the Global North and South, and pathways to a binding protection framework.</p>
+          <h2>UNHRC</h2>
+          <p class="full">United Nations Human Rights Council</p>
+          <span class="agenda-tag">Agenda</span>
+          <p class="agenda">Protecting the rights of climate refugees and displaced populations.</p>
+          <p class="desc">No treaty yet recognises the person displaced by a drowning coastline. The Council examines the legal vacuum around climate-induced displacement, burden-sharing between North and South, and pathways to a binding protection framework.</p>
         </div>
         <div class="side">
-          <span class="committee-tag tag-intermediate">Intermediate</span>
-          <div class="meta">Single delegation<br />~40 delegates</div>
-          <a href="register.html" class="btn btn-ghost btn-sm">Background Guide — Soon</a>
+          <span class="diff diff--2">Intermediate</span>
+          <div class="com-meta"><b>Single delegation</b><span>~40 delegates</span></div>
+          <a href="register.html" class="btn btn--sm">Guide — Soon</a>
         </div>
       </div>
 
-      <div class="committee-full reveal" id="who">
+      <div class="com-row rv" id="who">
+        <span class="no">C·04</span>
         <div>
-          <div class="abbr">WHO</div>
-          <div class="full-name">World Health Organization</div>
-        </div>
-        <div>
-          <h3>Equitable access to healthcare technology in the Global South</h3>
-          <p>From mRNA platforms to AI diagnostics, the newest tools of medicine remain concentrated in the wealthiest nations. Delegates will debate patent flexibility, technology transfer and local manufacturing — asking what "health for all" means when innovation has a price tag.</p>
+          <h2>WHO</h2>
+          <p class="full">World Health Organization</p>
+          <span class="agenda-tag">Agenda</span>
+          <p class="agenda">Equitable access to healthcare technology in the Global South.</p>
+          <p class="desc">From mRNA platforms to AI diagnostics, medicine's newest tools remain concentrated in the wealthiest nations. Delegates debate patent flexibility, technology transfer and local manufacturing — what does "health for all" mean when innovation has a price tag?</p>
         </div>
         <div class="side">
-          <span class="committee-tag tag-beginner">Beginner Friendly</span>
-          <div class="meta">Single delegation<br />~40 delegates</div>
-          <a href="register.html" class="btn btn-ghost btn-sm">Background Guide — Soon</a>
+          <span class="diff diff--1">Beginner Friendly</span>
+          <div class="com-meta"><b>Single delegation</b><span>~40 delegates</span></div>
+          <a href="register.html" class="btn btn--sm">Guide — Soon</a>
         </div>
       </div>
 
-      <div class="committee-full reveal" id="aippm">
+      <div class="com-row rv" id="aippm">
+        <span class="no">C·05</span>
         <div>
-          <div class="abbr">AIPPM</div>
-          <div class="full-name">All India Political Parties Meet</div>
-        </div>
-        <div>
-          <h3>Deliberation on the One Nation One Election framework</h3>
-          <p>India's most spirited committee. Portraying political leaders across party lines, delegates will clash over simultaneous elections — federalism, cost, voter behaviour and constitutional amendment — in a format that rewards rhetoric, wit and razor-sharp knowledge of Indian politics.</p>
+          <h2>AIPPM</h2>
+          <p class="full">All India Political Parties Meet</p>
+          <span class="agenda-tag">Agenda</span>
+          <p class="agenda">Deliberation on the One Nation One Election framework.</p>
+          <p class="desc">India's most spirited committee. Portraying leaders across party lines, delegates clash over simultaneous elections — federalism, cost, voter behaviour, constitutional amendment — in a format that rewards rhetoric, wit and razor-sharp political knowledge.</p>
         </div>
         <div class="side">
-          <span class="committee-tag tag-intermediate">Intermediate</span>
-          <div class="meta">Portfolio-based<br />~35 delegates</div>
-          <a href="register.html" class="btn btn-ghost btn-sm">Background Guide — Soon</a>
+          <span class="diff diff--2">Intermediate</span>
+          <div class="com-meta"><b>Portfolio-based</b><span>~35 delegates</span></div>
+          <a href="register.html" class="btn btn--sm">Guide — Soon</a>
         </div>
       </div>
 
-      <div class="committee-full reveal" id="crisis">
+      <div class="com-row rv" id="crisis">
+        <span class="no">C·06</span>
         <div>
-          <div class="abbr">CCC</div>
-          <div class="full-name">Continuous Crisis Committee</div>
-        </div>
-        <div>
-          <h3>Agenda classified — briefings released 48 hours before conference</h3>
-          <p>A fast-moving simulation where the world changes every hour. Directives, covert operations and midnight crises will test delegates' ability to think on their feet. Recommended for experienced delegates who thrive under pressure. Expect the unexpected.</p>
+          <h2>Crisis</h2>
+          <p class="full">Continuous Crisis Committee</p>
+          <span class="agenda-tag">Agenda</span>
+          <p class="agenda">Classified — briefings released 48 hours before the conference.</p>
+          <p class="desc">A fast-moving simulation where the world changes every hour. Directives, covert operations and midnight crises test your ability to think on your feet. For experienced delegates who thrive under pressure. Expect the unexpected.</p>
         </div>
         <div class="side">
-          <span class="committee-tag tag-advanced">Advanced</span>
-          <div class="meta">Portfolio-based<br />~25 delegates</div>
-          <a href="register.html" class="btn btn-ghost btn-sm">Background Guide — Soon</a>
+          <span class="diff diff--3">Advanced</span>
+          <div class="com-meta"><b>Portfolio-based</b><span>~25 delegates</span></div>
+          <a href="register.html" class="btn btn--sm">Guide — Soon</a>
         </div>
       </div>
 
-      <div class="committee-full reveal" id="ip">
+      <div class="com-row rv" id="ip">
+        <span class="no">C·07</span>
         <div>
-          <div class="abbr">IP</div>
-          <div class="full-name">International Press</div>
-        </div>
-        <div>
-          <h3>Journalism, photography and caricature across all committees</h3>
-          <p>The eyes and ears of the conference. Reporters file dispatches from every committee, photographers capture the moments that matter, and caricaturists skewer the day's diplomacy. The IP publishes a conference newsletter at the close of each day.</p>
+          <h2>Int'l Press</h2>
+          <p class="full">International Press Corps</p>
+          <span class="agenda-tag">Mandate</span>
+          <p class="agenda">Journalism, photography and caricature across all committees.</p>
+          <p class="desc">The eyes and ears of the conference. Reporters file dispatches from every room, photographers catch the moments that matter, caricaturists skewer the day's diplomacy — and the Press publishes a newsletter at each day's close.</p>
         </div>
         <div class="side">
-          <span class="committee-tag tag-beginner">Beginner Friendly</span>
-          <div class="meta">Journalist / Photographer<br />~20 members</div>
-          <a href="register.html" class="btn btn-ghost btn-sm">Apply via Registration</a>
+          <span class="diff diff--1">Beginner Friendly</span>
+          <div class="com-meta"><b>Journalist / Photographer</b><span>~20 members</span></div>
+          <a href="register.html" class="btn btn--sm">Apply via Registration</a>
         </div>
       </div>
 
-      <div class="info-note reveal">
-        <b>Note for delegates:</b> country and portfolio allotments are emailed after registration closes.
-        Background guides for every committee are released at least two weeks before the conference and
-        include the agenda brief, rules of procedure and position paper guidelines.
+      <div class="note-plate rv" style="margin-top: clamp(40px, 5vw, 70px)">
+        <b>Note for delegates —</b> country and portfolio allotments are emailed after registration
+        closes. Every background guide includes the agenda brief, rules of procedure and position
+        paper guidelines.
       </div>
     </div>
   </section>
 
-  <section class="cta-band">
-    <div class="container reveal">
-      <h2>Found your <em style="color:var(--gold-light)">committee?</em></h2>
-      <p>Preferences are honoured first-come, first-served. Register early to secure your first choice.</p>
-      <a href="register.html" class="btn btn-gold">Register Now</a>
+  <section class="cta">
+    <div class="container">
+      <span class="label rv">Preferences are first-come, first-served</span>
+      <h2 class="cta-title display split">Found your <span class="serif-i">room?</span></h2>
+      <div class="cta-row rv">
+        <a href="register.html" class="btn btn--paper">Register Now <span class="arr">→</span></a>
+        <p class="cta-note">Register early to lock your first-choice committee.</p>
+      </div>
     </div>
   </section>
 
   <footer class="footer">
     <div class="container">
-      <div class="footer-grid">
+      <h2 class="footer-title display"><a href="register.html">See you on<br />the floor →</a></h2>
+      <div class="footer-cols">
         <div>
-          <a href="index.html" class="brand">
-            <span class="brand-mark">T</span>
-            <span class="brand-text"><strong>TGSMUN</strong><span>Model United Nations</span></span>
-          </a>
-          <p>The flagship Model United Nations conference of TGS — fostering diplomacy, debate and dialogue among young leaders since 2019.</p>
+          <span class="label">TGSMUN</span>
+          <p class="footer-desc">The flagship Model United Nations conference of TGS — diplomacy, debate and dialogue since 2019.</p>
         </div>
         <div>
-          <h4>Conference</h4>
+          <span class="label">Conference</span>
           <ul>
             <li><a href="index.html#about">About</a></li>
             <li><a href="committees.html">Committees</a></li>
             <li><a href="secretariat.html">Secretariat</a></li>
             <li><a href="index.html#schedule">Schedule</a></li>
-            <li><a href="register.html">Register</a></li>
           </ul>
         </div>
         <div>
-          <h4>Follow Us</h4>
+          <span class="label">Delegates</span>
+          <ul>
+            <li><a href="register.html">Register</a></li>
+            <li><a href="index.html#faq">FAQs</a></li>
+            <li><a href="gallery.html">Archive</a></li>
+          </ul>
+        </div>
+        <div>
+          <span class="label">Elsewhere</span>
           <ul>
             <li><a href="#" rel="noopener">Instagram</a></li>
             <li><a href="#" rel="noopener">LinkedIn</a></li>
@@ -231,8 +233,8 @@
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 TGSMUN. All rights reserved.</span>
-        <span>Organised by the students of TGS.</span>
+        <span>© 2026 TGSMUN</span>
+        <span>Organised by the students of TGS</span>
       </div>
     </div>
   </footer>
