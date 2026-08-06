@@ -2,7 +2,7 @@
 
 Static website for the TGS Model United Nations conference. No build step, no dependencies — plain HTML/CSS/JS that deploys anywhere (GitHub Pages, Cloudflare Pages, Netlify).
 
-**Design:** international-style diplomatic editorial — archival paper ground, cobalt plates, vermilion stamp accent, condensed display type (Anton / Archivo / Instrument Serif via Google Fonts).
+**Design:** international-style diplomatic editorial in the event's colours — lacquer-black ground, crimson plates, gold accents, ivory contrast strips, condensed display type (Anton / Archivo / Instrument Serif via Google Fonts). All colours live as CSS variables at the top of `assets/css/style.css` (`--paper`, `--red`, `--gold`, `--ivory`…) for easy tuning.
 
 **Motion:** preloader sequence (first visit per tab), cobalt curtain page transitions, inertia smooth-scrolling, split-text word reveals, canvas globe with animated connection arcs, pinned horizontal-scroll committees track, rolling odometer countdown, magnetic buttons, custom cursor, marquee, scroll-triggered reveals. All hand-rolled vanilla JS — no libraries. `prefers-reduced-motion` disables everything gracefully.
 

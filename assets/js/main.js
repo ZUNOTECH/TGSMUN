@@ -313,9 +313,9 @@ if (canvas && canvas.getContext && !reduced) {
     a: pts[(i * 73) % N], b: pts[(i * 191 + 37) % N], t: i / 7,
   }));
 
-  const ink = "18,22,31";
-  const cobalt = "30,63,174";
-  const verm = "217,58,23";
+  const ink = "239,234,224";
+  const arcRed = "224,82,75";
+  const gold = "217,164,65";
   let rot = 0;
 
   function draw() {
@@ -333,7 +333,7 @@ if (canvas && canvas.getContext && !reduced) {
     // dots
     pts.forEach((p) => {
       const [sx, sy, z] = proj(p);
-      const a = 0.08 + ((z + 1) / 2) * 0.5;
+      const a = 0.06 + ((z + 1) / 2) * 0.45;
       ctx.beginPath();
       ctx.arc(sx, sy, 1.1 + ((z + 1) / 2) * 0.9, 0, 7);
       ctx.fillStyle = `rgba(${ink},${a.toFixed(3)})`;
@@ -343,7 +343,7 @@ if (canvas && canvas.getContext && !reduced) {
     // outline ring
     ctx.beginPath();
     ctx.arc(cx, cy, R, 0, 7);
-    ctx.strokeStyle = `rgba(${ink},0.25)`;
+    ctx.strokeStyle = `rgba(${ink},0.22)`;
     ctx.lineWidth = 1;
     ctx.stroke();
 
@@ -368,13 +368,13 @@ if (canvas && canvas.getContext && !reduced) {
         if (i === 0) ctx.moveTo(sx, sy); else ctx.lineTo(sx, sy);
         if (Math.abs(f - arc.t) < 1 / steps) pulse = [sx, sy, z];
       }
-      ctx.strokeStyle = `rgba(${cobalt},0.35)`;
+      ctx.strokeStyle = `rgba(${arcRed},0.4)`;
       ctx.lineWidth = 1;
       ctx.stroke();
       if (pulse) {
         ctx.beginPath();
         ctx.arc(pulse[0], pulse[1], 2.6, 0, 7);
-        ctx.fillStyle = `rgba(${verm},${(0.35 + ((pulse[2] + 1) / 2) * 0.65).toFixed(3)})`;
+        ctx.fillStyle = `rgba(${gold},${(0.35 + ((pulse[2] + 1) / 2) * 0.65).toFixed(3)})`;
         ctx.fill();
       }
     });
