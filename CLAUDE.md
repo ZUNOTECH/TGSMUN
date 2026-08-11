@@ -31,6 +31,7 @@ Deliberately single-theme (no light/dark variants).
 ## Git / deploy
 
 - Single-branch flow: commit and push directly to `main` — Vercel deploys production from it.
+- Live site: https://tgsmun.startupsling.com/
 - Verify changes with Playwright screenshots (Chromium at `/opt/pw-browsers/chromium`) before pushing.
 
 ## Conference facts (confirmed)
