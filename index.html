@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TGSMUN 2026 — The World, In Session</title>
-  <meta name="description" content="TGSMUN 2026 — the flagship Model United Nations conference of TGS. Two days of diplomacy, debate and dialogue. 10–11 October 2026." />
+  <title>TGSMUN 2026 — The Gaudium School Model United Nations</title>
+  <meta name="description" content="TGSMUN 2026 — the fifth edition of The Gaudium School's Model United Nations, Hyderabad. 29–30 August 2026. 14 committees, 700 delegates." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
@@ -30,14 +30,15 @@
         <span class="brand-mark">T</span>
         <span class="brand-text">
           <strong>TGSMUN</strong>
-          <span>Sixth Session · 2026</span>
+          <span>Fifth Edition · 2026</span>
         </span>
       </a>
       <nav class="nav-links">
         <a href="index.html" class="active">Home</a>
         <a href="committees.html">Committees</a>
+        <a href="index.html#schedule">Itinerary</a>
         <a href="secretariat.html">Secretariat</a>
-        <a href="gallery.html">Archive</a>
+        <a href="index.html#contact">Contact</a>
         <a href="register.html" class="btn btn--solid btn--sm">Register <span class="arr">→</span></a>
       </nav>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -47,22 +48,19 @@
   <div class="menu-overlay">
     <a href="index.html"><i>01</i> Home</a>
     <a href="committees.html"><i>02</i> Committees</a>
-    <a href="secretariat.html"><i>03</i> Secretariat</a>
-    <a href="gallery.html"><i>04</i> Archive</a>
-    <a href="register.html"><i>05</i> Register</a>
+    <a href="register.html"><i>03</i> Register</a>
+    <a href="index.html#schedule"><i>04</i> Itinerary</a>
+    <a href="secretariat.html"><i>05</i> Secretariat</a>
+    <a href="index.html#contact"><i>06</i> Contact</a>
   </div>
 
-  <!-- ================= HERO ================= -->
+  <!-- ================= HERO (calm on load) ================= -->
   <section class="hero">
-    <canvas class="hero-canvas" aria-hidden="true"></canvas>
-    <div class="stamp" aria-hidden="true">Sixth<br />Session<br />· 2026 ·</div>
-
     <div class="container hero-inner">
       <div class="hero-meta-top">
-        <span class="label"><b>●</b> 10–11 October 2026</span>
-        <span class="label">TGS Campus</span>
-        <span class="label">7 Committees</span>
-        <span class="label">250+ Delegates</span>
+        <span class="label"><b>●</b> 29–30 August 2026</span>
+        <span class="label">The Gaudium School · Hyderabad</span>
+        <span class="label">Fifth Edition</span>
       </div>
 
       <h1 class="hero-title display split">
@@ -72,27 +70,28 @@
 
       <div class="hero-bar rv">
         <p class="hero-sub">
-          <b>TGSMUN</b> is the flagship Model United Nations conference of TGS —
-          two days where the sharpest young minds in the region argue, negotiate
-          and rewrite the world order before dinner.
+          <b>TGSMUN</b> is the flagship Model United Nations conference of
+          The Gaudium School, Hyderabad — two days, fourteen committees,
+          and the region's sharpest young delegates.
         </p>
         <div class="hero-ctas">
-          <a href="register.html" class="btn btn--solid">Register Now <span class="arr">→</span></a>
+          <a href="register.html" class="btn btn--solid">Register <span class="arr">→</span></a>
           <a href="committees.html" class="btn">The Committees</a>
         </div>
-        <div class="countdown" aria-label="Countdown to conference">
-          <div class="count-cell" data-cd="d"><div class="digits"></div><span class="unit">Days</span></div>
-          <div class="count-cell" data-cd="h"><div class="digits"></div><span class="unit">Hours</span></div>
-          <div class="count-cell" data-cd="m"><div class="digits"></div><span class="unit">Min</span></div>
-          <div class="count-cell" data-cd="s"><div class="digits"></div><span class="unit">Sec</span></div>
-        </div>
+        <span class="label">Scroll ↓</span>
       </div>
     </div>
+  </section>
 
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>Dialogue over Division <i>✳</i> TGSMUN 2026 <i>✳</i> Sixth Session <i>✳</i> 10–11 October <i>✳</i> Dialogue over Division <i>✳</i> TGSMUN 2026 <i>✳</i> Sixth Session <i>✳</i> 10–11 October <i>✳</i> </span>
-        <span>Dialogue over Division <i>✳</i> TGSMUN 2026 <i>✳</i> Sixth Session <i>✳</i> 10–11 October <i>✳</i> Dialogue over Division <i>✳</i> TGSMUN 2026 <i>✳</i> Sixth Session <i>✳</i> 10–11 October <i>✳</i> </span>
+  <!-- ================= SCRUB STATEMENT ================= -->
+  <section class="statement" data-scrub>
+    <div class="statement-sticky">
+      <div class="container">
+        <p class="statement-text">One floor. Fourteen committees. Seven hundred delegates. Two days of *dialogue over *division.</p>
+      </div>
+      <div class="statement-meta">
+        <span class="label">The Gaudium School · Kollur Campus</span>
+        <span class="label label--red">Edition V · 29–30 August 2026</span>
       </div>
     </div>
   </section>
@@ -100,10 +99,10 @@
   <!-- ================= STATS ================= -->
   <section class="stats-band">
     <div class="stats-row">
-      <div class="stat-cell rv"><b><span data-count="250">0</span><sup>+</sup></b><span>Delegates</span></div>
-      <div class="stat-cell rv rv-d1"><b><span data-count="7">0</span></b><span>Committees</span></div>
-      <div class="stat-cell rv rv-d2"><b><span data-count="30">0</span><sup>+</sup></b><span>Schools</span></div>
-      <div class="stat-cell rv rv-d3"><b><span data-count="6">0</span></b><span>Sessions since 2019</span></div>
+      <div class="stat-cell rv"><b><span data-count="700">0</span></b><span>Delegates</span></div>
+      <div class="stat-cell rv rv-d1"><b><span data-count="14">0</span></b><span>Committees</span></div>
+      <div class="stat-cell rv rv-d2"><b><span data-count="25">0</span><sup>+</sup></b><span>Schools</span></div>
+      <div class="stat-cell rv rv-d3"><b><span data-count="5">0</span></b><span>Editions</span></div>
     </div>
   </section>
 
@@ -114,13 +113,13 @@
         <span class="idx">01</span>
         <span class="label">The Conference</span>
         <span class="grow"></span>
-        <span class="label label--gold">Est. 2019</span>
+        <span class="label label--gold">Fifth Edition</span>
       </div>
       <div class="about-grid">
         <div>
           <p class="about-lede split">
-            Six sessions in, TGSMUN has grown from a single hall into the region's
-            most spirited stage for <span class="serif-i">young diplomacy.</span>
+            Five editions in, TGSMUN has grown into Hyderabad's most spirited
+            stage for <span class="serif-i">young diplomacy.</span>
           </p>
           <div class="about-copy rv">
             <p>
@@ -130,9 +129,9 @@
             </p>
             <p>
               Whether it's your first placard or your fifteenth gavel, there is a seat
-              in one of our seven committees with your name on it.
+              across our senior and junior committees with your name on it.
             </p>
-            <a href="register.html" class="btn" style="margin-top:14px">Join the Sixth Session <span class="arr">→</span></a>
+            <a href="register.html" class="btn" style="margin-top:14px">Join the Fifth Edition <span class="arr">→</span></a>
           </div>
         </div>
         <div class="letter-plate clip">
@@ -145,8 +144,8 @@
           <div class="letter-sign">
             <span class="seal">SG</span>
             <div>
-              <b>The Secretary-General</b>
-              <span>TGSMUN 2026 Secretariat</span>
+              <b>Sneha Kolluri</b>
+              <span>Secretary-General · TGSMUN 2026</span>
             </div>
           </div>
         </div>
@@ -161,7 +160,7 @@
         <div class="container">
           <div class="sec-head" style="margin-bottom:0">
             <span class="idx">02</span>
-            <span class="label">Committees & Agendas</span>
+            <span class="label">Committees</span>
             <span class="grow"></span>
             <span class="label label--red">Scroll →</span>
           </div>
@@ -169,54 +168,75 @@
       </div>
 
       <div class="hpin-track">
-        <a class="com-card" href="committees.html#unga">
-          <span class="no">C·01</span>
-          <span class="abbr">UNGA</span>
-          <span class="full">General Assembly — DISEC</span>
-          <p class="agenda">Regulation of autonomous weapons systems and AI in modern warfare.</p>
-          <span class="foot"><span>Beginner friendly</span><span class="arr">→</span></span>
-        </a>
         <a class="com-card" href="committees.html#unsc">
-          <span class="no">C·02</span>
+          <span class="no">C·01</span>
           <span class="abbr">UNSC</span>
-          <span class="full">Security Council</span>
-          <p class="agenda">The situation in the Arctic — sovereignty, security and shipping lanes.</p>
-          <span class="foot"><span>Advanced</span><span class="arr">→</span></span>
+          <span class="full">United Nations Security Council</span>
+          <p class="agenda">Agenda to be announced.</p>
+          <span class="foot"><span>Double delegation</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#unhrc">
-          <span class="no">C·03</span>
+          <span class="no">C·02</span>
           <span class="abbr">UNHRC</span>
           <span class="full">Human Rights Council</span>
-          <p class="agenda">Protecting the rights of climate refugees and displaced populations.</p>
-          <span class="foot"><span>Intermediate</span><span class="arr">→</span></span>
+          <p class="agenda">Agenda to be announced.</p>
+          <span class="foot"><span>Senior</span><span class="arr">→</span></span>
         </a>
-        <a class="com-card" href="committees.html#who">
-          <span class="no">C·04</span>
-          <span class="abbr">WHO</span>
-          <span class="full">World Health Organization</span>
-          <p class="agenda">Equitable access to healthcare technology in the Global South.</p>
-          <span class="foot"><span>Beginner friendly</span><span class="arr">→</span></span>
+        <a class="com-card" href="committees.html#disec">
+          <span class="no">C·03</span>
+          <span class="abbr">DISEC</span>
+          <span class="full">Disarmament &amp; International Security</span>
+          <p class="agenda">Agenda to be announced.</p>
+          <span class="foot"><span>Senior</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#aippm">
-          <span class="no">C·05</span>
+          <span class="no">C·04</span>
           <span class="abbr">AIPPM</span>
           <span class="full">All India Political Parties Meet</span>
-          <p class="agenda">Deliberation on the One Nation One Election framework.</p>
-          <span class="foot"><span>Intermediate</span><span class="arr">→</span></span>
+          <p class="agenda">Agenda to be announced.</p>
+          <span class="foot"><span>Special ROP</span><span class="arr">→</span></span>
         </a>
-        <a class="com-card" href="committees.html#crisis">
+        <a class="com-card" href="committees.html#hcc">
+          <span class="no">C·05</span>
+          <span class="abbr">HCC</span>
+          <span class="full">Historic Crisis Committee</span>
+          <p class="agenda">Briefing to be announced.</p>
+          <span class="foot"><span>Crisis</span><span class="arr">→</span></span>
+        </a>
+        <a class="com-card" href="committees.html#oas">
           <span class="no">C·06</span>
-          <span class="abbr">Crisis</span>
-          <span class="full">Continuous Crisis Committee</span>
-          <p class="agenda">Classified — briefings drop 48 hours before the first gavel.</p>
-          <span class="foot"><span>Advanced</span><span class="arr">→</span></span>
+          <span class="abbr">OAS</span>
+          <span class="full">Organization of American States</span>
+          <p class="agenda">Agenda to be announced.</p>
+          <span class="foot"><span>Senior</span><span class="arr">→</span></span>
+        </a>
+        <a class="com-card" href="committees.html#opec">
+          <span class="no">C·07</span>
+          <span class="abbr">OPEC</span>
+          <span class="full">Org. of the Petroleum Exporting Countries</span>
+          <p class="agenda">Crisis briefing to be announced.</p>
+          <span class="foot"><span>Crisis</span><span class="arr">→</span></span>
+        </a>
+        <a class="com-card" href="committees.html#nba">
+          <span class="no">C·08</span>
+          <span class="abbr">NBA Draft</span>
+          <span class="full">All-Time Greats Draft</span>
+          <p class="agenda">Build the greatest roster in history — and defend every pick.</p>
+          <span class="foot"><span>Semi-crisis</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#ip">
-          <span class="no">C·07</span>
+          <span class="no">C·09</span>
           <span class="abbr">Press</span>
-          <span class="full">International Press Corps</span>
+          <span class="full">International Press</span>
           <p class="agenda">Reportage, photography and caricature across every committee room.</p>
-          <span class="foot"><span>Beginner friendly</span><span class="arr">→</span></span>
+          <span class="foot"><span>Press corps</span><span class="arr">→</span></span>
+        </a>
+        <a class="com-card" href="committees.html#junior">
+          <span class="no">C·10–14</span>
+          <span class="abbr">Junior Wing</span>
+          <span class="full">UNICEF · UNESCO · WHO · CSW · UNOOSA</span>
+          <p class="agenda">Five committees built for younger delegates finding their voice.</p>
+          <span class="foot"><span>5 committees</span><span class="arr">→</span></span>
         </a>
       </div>
 
@@ -224,7 +244,30 @@
     </div>
   </section>
 
-  <!-- ================= SCHEDULE ================= -->
+  <!-- ================= COUNTDOWN ================= -->
+  <section class="count-sec">
+    <div class="container count-sec-inner">
+      <div class="when rv">
+        <span class="label label--gold">Convening in</span>
+        <span class="display">29–30 August 2026</span>
+      </div>
+      <div class="countdown countdown--big rv rv-d1" aria-label="Countdown to conference">
+        <div class="count-cell" data-cd="d"><div class="digits"></div><span class="unit">Days</span></div>
+        <div class="count-cell" data-cd="h"><div class="digits"></div><span class="unit">Hours</span></div>
+        <div class="count-cell" data-cd="m"><div class="digits"></div><span class="unit">Min</span></div>
+        <div class="count-cell" data-cd="s"><div class="digits"></div><span class="unit">Sec</span></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>TGSMUN 2026 <i>✳</i> Fifth Edition <i>✳</i> 29–30 August <i>✳</i> Dialogue over Division <i>✳</i> TGSMUN 2026 <i>✳</i> Fifth Edition <i>✳</i> 29–30 August <i>✳</i> Dialogue over Division <i>✳</i> </span>
+      <span>TGSMUN 2026 <i>✳</i> Fifth Edition <i>✳</i> 29–30 August <i>✳</i> Dialogue over Division <i>✳</i> TGSMUN 2026 <i>✳</i> Fifth Edition <i>✳</i> 29–30 August <i>✳</i> Dialogue over Division <i>✳</i> </span>
+    </div>
+  </div>
+
+  <!-- ================= ITINERARY ================= -->
   <section class="section" id="schedule">
     <div class="container">
       <div class="sec-head rv">
@@ -237,7 +280,7 @@
         <div class="sched-day rv">
           <div class="day-tag">
             <span class="display">Day One</span>
-            <span class="label">Sat · 10 Oct</span>
+            <span class="label">Sat · 29 Aug</span>
           </div>
           <div class="sched-row"><time>08:00</time><p>Delegate registration &amp; check-in</p></div>
           <div class="sched-row"><time>09:00</time><p>Opening ceremony &amp; keynote address</p></div>
@@ -249,15 +292,17 @@
         <div class="sched-day rv rv-d1">
           <div class="day-tag">
             <span class="display">Day Two</span>
-            <span class="label">Sun · 11 Oct</span>
+            <span class="label">Sun · 30 Aug</span>
           </div>
           <div class="sched-row"><time>08:30</time><p>Delegate check-in</p></div>
           <div class="sched-row"><time>09:00</time><p>Committee Session III</p></div>
           <div class="sched-row"><time>12:30</time><p>Lunch</p></div>
           <div class="sched-row"><time>13:30</time><p>Session IV <em>— resolutions &amp; voting</em></p></div>
           <div class="sched-row"><time>16:00</time><p>Closing ceremony &amp; awards</p></div>
-          <div class="sched-row"><time>17:30</time><p>Delegate social</p></div>
         </div>
+      </div>
+      <div class="note-plate rv" style="margin-top: clamp(30px, 4vw, 50px)">
+        <b>Note —</b> exact timings will be confirmed in the delegate handbook closer to the conference.
       </div>
     </div>
   </section>
@@ -269,28 +314,24 @@
         <span class="idx">04</span>
         <span class="label">Questions</span>
         <span class="grow"></span>
-        <span class="label label--gold">Ask Anything</span>
+        <span class="label label--red">Ask Anything</span>
       </div>
       <div class="faq-wrap">
         <div class="faq-item rv">
           <button class="faq-q" aria-expanded="false">Who can participate in TGSMUN?<span class="plus"></span></button>
-          <div class="faq-a"><p>Students of classes 8–12 from any school are welcome. Delegations register through their school's MUN coordinator; individual delegates may register independently.</p></div>
+          <div class="faq-a"><p>Senior committees seat delegates from Grades 9–12; younger delegates join the junior wing — UNICEF, UNESCO, WHO, CSW and UNOOSA. Delegations register through their school's MUN coordinator; individual delegates may register independently.</p></div>
         </div>
         <div class="faq-item rv">
           <button class="faq-q" aria-expanded="false">I've never done MUN before. Can I still join?<span class="plus"></span></button>
-          <div class="faq-a"><p>Absolutely. UNGA, WHO and the Press Corps are designed for first-timers, and we run a free rules-of-procedure workshop on the morning of Day One.</p></div>
+          <div class="faq-a"><p>Absolutely. The junior wing is built for first-timers, DISEC and UNHRC are friendly senior rooms, and the International Press welcomes writers and photographers of every experience level.</p></div>
         </div>
         <div class="faq-item rv">
           <button class="faq-q" aria-expanded="false">How are country allotments decided?<span class="plus"></span></button>
-          <div class="faq-a"><p>First-come, first-served after registration closes, weighing your committee preferences and prior experience. Allotments and background guides are emailed at least two weeks before the conference.</p></div>
+          <div class="faq-a"><p>First-come, first-served against capacity, weighing your committee preferences and prior experience. Allotments and background guides are emailed ahead of the conference.</p></div>
         </div>
         <div class="faq-item rv">
           <button class="faq-q" aria-expanded="false">What is the dress code?<span class="plus"></span></button>
-          <div class="faq-a"><p>Western or Indian formals for all committee sessions. National dress of your allotted country is welcome at the opening ceremony.</p></div>
-        </div>
-        <div class="faq-item rv">
-          <button class="faq-q" aria-expanded="false">Are meals provided?<span class="plus"></span></button>
-          <div class="faq-a"><p>Yes — the delegate fee covers lunch and refreshments on both days.</p></div>
+          <div class="faq-a"><p>Western or Indian formals for all committee sessions.</p></div>
         </div>
         <div class="faq-item rv">
           <button class="faq-q" aria-expanded="false">What awards are given?<span class="plus"></span></button>
@@ -303,7 +344,7 @@
   <!-- ================= CTA ================= -->
   <section class="cta">
     <div class="container">
-      <span class="label rv">Registration open — closes 20 September</span>
+      <span class="label rv">Registration open — until capacity is reached</span>
       <h2 class="cta-title display split">
         Take the <span class="serif-i">floor.</span><br />
         <span class="outline">Make it count.</span>
@@ -320,15 +361,15 @@
     <div class="contact-grid">
       <div class="contact-cell rv">
         <span class="label">Write to us</span>
-        <a href="mailto:secretariat@tgsmun.in">secretariat@tgsmun.in</a>
+        <a href="mailto:tgs.mun@thegaudium.com">tgs.mun@thegaudium.com</a>
       </div>
       <div class="contact-cell rv rv-d1">
-        <span class="label">Delegate affairs</span>
-        <p>+91 XXXXX XXXXX</p>
+        <span class="label">Instagram</span>
+        <a href="https://www.instagram.com/tgs.mun" target="_blank" rel="noopener">@tgs.mun</a>
       </div>
       <div class="contact-cell rv rv-d2">
         <span class="label">The venue</span>
-        <p>TGS Campus Auditorium</p>
+        <p>The Gaudium School, Kollur Campus, Hyderabad</p>
       </div>
     </div>
   </section>
@@ -342,15 +383,15 @@
       <div class="footer-cols">
         <div>
           <span class="label">TGSMUN</span>
-          <p class="footer-desc">The flagship Model United Nations conference of TGS — diplomacy, debate and dialogue since 2019.</p>
+          <p class="footer-desc">The flagship Model United Nations conference of The Gaudium School, Hyderabad — dialogue, debate and diplomacy.</p>
         </div>
         <div>
           <span class="label">Conference</span>
           <ul>
             <li><a href="index.html#about">About</a></li>
             <li><a href="committees.html">Committees</a></li>
+            <li><a href="index.html#schedule">Itinerary</a></li>
             <li><a href="secretariat.html">Secretariat</a></li>
-            <li><a href="index.html#schedule">Schedule</a></li>
           </ul>
         </div>
         <div>
@@ -358,21 +399,20 @@
           <ul>
             <li><a href="register.html">Register</a></li>
             <li><a href="index.html#faq">FAQs</a></li>
-            <li><a href="gallery.html">Archive</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
           </ul>
         </div>
         <div>
           <span class="label">Elsewhere</span>
           <ul>
-            <li><a href="#" rel="noopener">Instagram</a></li>
-            <li><a href="#" rel="noopener">LinkedIn</a></li>
-            <li><a href="mailto:secretariat@tgsmun.in">Email</a></li>
+            <li><a href="https://www.instagram.com/tgs.mun" target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href="mailto:tgs.mun@thegaudium.com">Email</a></li>
           </ul>
         </div>
       </div>
       <div class="footer-bottom">
-        <span>© 2026 TGSMUN</span>
-        <span>Organised by the students of TGS</span>
+        <span>© 2026 TGSMUN · The Gaudium School</span>
+        <span>Organised by the students of The Gaudium School, Hyderabad</span>
       </div>
     </div>
   </footer>

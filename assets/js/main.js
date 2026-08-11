@@ -5,7 +5,7 @@
    ========================================================================== */
 
 // ---- conference date (edit here) ----
-const CONFERENCE_DATE = new Date("2026-10-10T08:00:00+05:30");
+const CONFERENCE_DATE = new Date("2026-08-29T08:00:00+05:30");
 
 const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const isTouch = matchMedia("(pointer: coarse)").matches;
@@ -283,103 +283,56 @@ if (!isTouch && !reduced) {
   });
 }
 
-/* ============ hero canvas globe ============ */
-const canvas = document.querySelector(".hero-canvas");
-if (canvas && canvas.getContext && !reduced) {
-  const ctx = canvas.getContext("2d");
-  const DPR = Math.min(2, devicePixelRatio || 1);
-  let W, H;
-  const fit = () => {
-    const r = canvas.getBoundingClientRect();
-    W = r.width; H = r.height;
-    canvas.width = W * DPR; canvas.height = H * DPR;
-    ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+/* ============ scroll-scrub engine (statement section) ============ */
+const scrubEls = [...document.querySelectorAll("[data-scrub]")];
+scrubEls.forEach((el) => {
+  const text = el.querySelector(".statement-text");
+  if (!text) return;
+  const words = [];
+  text.innerHTML = text.textContent.trim().split(/\s+/).map((word) => {
+    const accent = word.startsWith("*");
+    const clean = accent ? word.slice(1) : word;
+    return `<span class="sw${accent ? " accent" : ""}">${clean}</span>`;
+  }).join(" ");
+  el._words = [...text.querySelectorAll(".sw")];
+});
+if (scrubEls.length && !reduced) {
+  const scrubTick = () => {
+    scrubEls.forEach((el) => {
+      const total = el.offsetHeight - innerHeight;
+      if (total <= 0) return;
+      const p = Math.max(0, Math.min(1, -el.getBoundingClientRect().top / total));
+      if (el._words) {
+        const lit = Math.floor(p * 1.25 * el._words.length);
+        el._words.forEach((w, i) => w.classList.toggle("lit", i < lit));
+      }
+      const sticky = el.querySelector(".statement-sticky");
+      if (sticky) sticky.classList.toggle("meta-in", p > 0.55);
+    });
   };
-  fit();
-  addEventListener("resize", fit);
+  addEventListener("scroll", scrubTick, { passive: true });
+  scrubTick();
+} else {
+  // reduced motion: show everything lit
+  scrubEls.forEach((el) => el._words && el._words.forEach((w) => w.classList.add("lit")));
+}
 
-  // fibonacci sphere points
-  const N = 520;
-  const pts = [];
-  const GA = Math.PI * (3 - Math.sqrt(5));
-  for (let i = 0; i < N; i++) {
-    const y = 1 - (i / (N - 1)) * 2;
-    const rad = Math.sqrt(1 - y * y);
-    const th = GA * i;
-    pts.push([Math.cos(th) * rad, y, Math.sin(th) * rad]);
-  }
-  // arcs between random point pairs
-  const arcs = Array.from({ length: 7 }, (_, i) => ({
-    a: pts[(i * 73) % N], b: pts[(i * 191 + 37) % N], t: i / 7,
-  }));
-
-  const ink = "239,234,224";
-  const arcRed = "224,82,75";
-  const gold = "217,164,65";
-  let rot = 0;
-
-  function draw() {
-    ctx.clearRect(0, 0, W, H);
-    const R = Math.min(W, H) * 0.42;
-    const cx = W / 2, cy = H / 2;
-    rot += 0.0016;
-
-    const proj = ([x, y, z]) => {
-      const xr = x * Math.cos(rot) + z * Math.sin(rot);
-      const zr = -x * Math.sin(rot) + z * Math.cos(rot);
-      return [cx + xr * R, cy + y * R * 0.98, zr];
-    };
-
-    // dots
-    pts.forEach((p) => {
-      const [sx, sy, z] = proj(p);
-      const a = 0.06 + ((z + 1) / 2) * 0.45;
-      ctx.beginPath();
-      ctx.arc(sx, sy, 1.1 + ((z + 1) / 2) * 0.9, 0, 7);
-      ctx.fillStyle = `rgba(${ink},${a.toFixed(3)})`;
-      ctx.fill();
+/* ============ velocity-reactive marquee ============ */
+const mTracks = [...document.querySelectorAll(".marquee-track")];
+if (mTracks.length && !reduced) {
+  let lastScrollY = window.scrollY, vel = 0;
+  addEventListener("scroll", () => {
+    vel += Math.min(60, Math.abs(window.scrollY - lastScrollY));
+    lastScrollY = window.scrollY;
+  }, { passive: true });
+  (function mLoop() {
+    vel *= 0.92;
+    const boost = 1 + vel * 0.05;
+    const skew = Math.min(6, vel * 0.08);
+    mTracks.forEach((t) => {
+      t.style.animationDuration = 28 / boost + "s";
+      t.style.transform = `skewX(${-skew}deg)`;
     });
-
-    // outline ring
-    ctx.beginPath();
-    ctx.arc(cx, cy, R, 0, 7);
-    ctx.strokeStyle = `rgba(${ink},0.22)`;
-    ctx.lineWidth = 1;
-    ctx.stroke();
-
-    // animated great arcs with traveling pulse
-    arcs.forEach((arc) => {
-      arc.t = (arc.t + 0.0022) % 1;
-      const steps = 40;
-      ctx.beginPath();
-      let pulse = null;
-      for (let i = 0; i <= steps; i++) {
-        const f = i / steps;
-        // slerp-ish midpoint lift
-        const m = [
-          arc.a[0] + (arc.b[0] - arc.a[0]) * f,
-          arc.a[1] + (arc.b[1] - arc.a[1]) * f,
-          arc.a[2] + (arc.b[2] - arc.a[2]) * f,
-        ];
-        const len = Math.hypot(...m) || 1;
-        const lift = 1 + Math.sin(f * Math.PI) * 0.18;
-        const p = m.map((v) => (v / len) * lift);
-        const [sx, sy, z] = proj(p);
-        if (i === 0) ctx.moveTo(sx, sy); else ctx.lineTo(sx, sy);
-        if (Math.abs(f - arc.t) < 1 / steps) pulse = [sx, sy, z];
-      }
-      ctx.strokeStyle = `rgba(${arcRed},0.4)`;
-      ctx.lineWidth = 1;
-      ctx.stroke();
-      if (pulse) {
-        ctx.beginPath();
-        ctx.arc(pulse[0], pulse[1], 2.6, 0, 7);
-        ctx.fillStyle = `rgba(${gold},${(0.35 + ((pulse[2] + 1) / 2) * 0.65).toFixed(3)})`;
-        ctx.fill();
-      }
-    });
-
-    requestAnimationFrame(draw);
-  }
-  draw();
+    requestAnimationFrame(mLoop);
+  })();
 }

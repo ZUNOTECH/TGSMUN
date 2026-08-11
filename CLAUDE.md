@@ -4,10 +4,10 @@ Static site (plain HTML/CSS/JS, no build step) for the TGS Model United Nations 
 
 ## Architecture
 
-- 5 pages: `index.html`, `committees.html`, `secretariat.html`, `register.html`, `gallery.html`
+- 4 pages: `index.html`, `committees.html`, `secretariat.html`, `register.html`
 - Shared styles: `assets/css/style.css` — the design system lives here
 - Shared motion engine: `assets/js/main.js` — all animation is hand-rolled vanilla JS (no libraries)
-- Nav / loader / curtain / menu-overlay / footer markup is duplicated per page — edit all 5 pages when changing any of them
+- Nav / loader / curtain / menu-overlay / footer markup is duplicated per page — edit all 4 pages when changing any of them
 
 ## Design system (event theme: black & red with gold accents)
 
@@ -33,7 +33,17 @@ Deliberately single-theme (no light/dark variants).
 - Single-branch flow: commit and push directly to `main` — Vercel deploys production from it.
 - Verify changes with Playwright screenshots (Chromium at `/opt/pw-browsers/chromium`) before pushing.
 
-## Remaining placeholders (see README.md for the full list)
+## Conference facts (confirmed)
 
-School name ("TGS"), secretariat names, contact phone, social links, Google Form embed in
-`register.html`, gallery photos (swap `.fill.ph-N` divs for `<img class="fill">`), conference dates.
+The Gaudium School, Kollur Campus, Hyderabad · Fifth Edition · 29–30 Aug 2026 · 700 delegates ·
+25+ schools · tgs.mun@thegaudium.com · Instagram @tgs.mun.
+Committees — senior (Gr 9–12): UNSC (double del), UNHRC, DISEC, AIPPM, HCC, OAS, OPEC (crisis),
+NBA All-Time Greats Draft (semi-crisis), International Press; junior: UNICEF, UNESCO, WHO, CSW, UNOOSA.
+Secretariat: SG Sneha Kolluri, Co-SG Varun Lingamallu, DGs Afraz Aboobacker & Aditi Guddanti,
+CdA Myra Taneja, USG Finance Anant.
+
+## Remaining placeholders
+
+Agendas & committee sizes (all "TBA"), fees, registration form link, background-guide PDFs,
+WhatsApp group links, exact itinerary timings, further secretariat appointments.
+AIPPM/NBA ROP primers + quizzes on `committees.html` are drafts — refine against the real ROP.
