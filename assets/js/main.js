@@ -340,52 +340,65 @@ if (mTracks.length && !reduced) {
   })();
 }
 
-/* ============ gavel opening: wind-up -> strike -> stamp -> wipe ============ */
+/* ============ gavel opening: scroll-traced outline -> strike -> wipe ============ */
 const opening = document.querySelector(".opening");
 const ov = document.querySelector(".intro-ov");
 if (opening && ov && !reduced) {
-  // shorter runway on repeat visits
-  if (sessionStorage.getItem("tgsmun-gavel")) { opening.style.height = "220vh"; ov.classList.add("armed"); }
-  else { opening.style.height = "300vh"; }
+  const seen = sessionStorage.getItem("tgsmun-gavel");
+  opening.style.height = seen ? "230vh" : "300vh";
   sessionStorage.setItem("tgsmun-gavel", "1");
 
-  const gavel = ov.querySelector(".g-gavel");
+  const swing = ov.querySelector(".g-swing");
   const tag = ov.querySelector(".ov-tag");
   const hint = ov.querySelector(".ov-hint");
-  let struck = false, shown = false;
+  // pencil-trace order: grip -> handle -> head -> bands -> puck -> base
+  const SEGS = [
+    ["t1", 0.00, 0.09], ["t2", 0.06, 0.34], ["t3", 0.30, 0.62],
+    ["t4", 0.60, 0.70], ["t5", 0.67, 0.77], ["t6", 0.75, 0.89], ["t8", 0.83, 0.95], ["t7", 0.88, 1.00],
+  ].map(([c, a, b]) => [ov.querySelector("." + c), a, b]);
 
-  const openTick = () => {
-    const total = opening.offsetHeight - innerHeight;
-    const p = Math.max(0, Math.min(1, scrollY / total));
+  const TRACE_END = 0.55;   // scroll fraction spent tracing
+  const STRIKE_AT = 0.64;
+  let struck = false, shown = false, tease = 0;
 
-    if (p > 0.01) ov.classList.add("armed"); // release the load animation's transform lock
+  const render = (p) => {
+    // tracing, scrubbed: each segment draws across its slice of the trace phase
+    const tp = Math.min(1, Math.max(p, tease) / TRACE_END);
+    SEGS.forEach(([el, a, b]) => {
+      const k = Math.min(1, Math.max(0, (tp - a) / (b - a)));
+      el.style.strokeDashoffset = 1 - k;
+    });
+    // anticipation lift between trace end and the strike
     if (!struck) {
-      // wind-up: scrubbed with scroll
-      gavel.style.transform = `rotate(${55 + p * 20}deg)`;
+      const w = Math.min(1, Math.max(0, (p - TRACE_END) / (STRIKE_AT - TRACE_END)));
+      swing.style.transform = `rotate(${w * 7}deg)`;
     }
     if (hint) hint.style.opacity = Math.max(0, 1 - p * 4);
     if (tag) tag.style.opacity = Math.max(0, 1 - Math.max(0, p - 0.5) * 4);
 
-    // the strike commits at 62% — you can't half-bang a gavel
-    if (p >= 0.52 && !struck) {
+    if (p >= STRIKE_AT && !struck) {
       struck = true;
       ov.classList.add("struck");
       if (!shown) { shown = true; pageIn(); }
     }
-    if (p < 0.4 && struck) { // re-arm on scroll back
-      struck = false;
-      ov.classList.remove("struck");
-      ov.classList.add("armed");
-    }
+    if (p < 0.5 && struck) { struck = false; ov.classList.remove("struck"); }
 
-    // circular wipe: slow start, scroll-driven after the strike
-    const w = Math.pow(Math.max(0, (p - 0.6) / 0.4), 1.6);
-    ov.style.setProperty("--holeR", (w * 145) + "vmax");
+    // slow circular wipe from the impact point
+    const w2 = Math.pow(Math.max(0, (p - 0.7) / 0.3), 1.6);
+    ov.style.setProperty("--holeR", (w2 * 145) + "vmax");
     ov.classList.toggle("gone", p >= 0.995);
   };
-  addEventListener("scroll", openTick, { passive: true });
-  addEventListener("resize", openTick);
-  openTick();
+  const prog = () => Math.max(0, Math.min(1, scrollY / (opening.offsetHeight - innerHeight)));
+  addEventListener("scroll", () => render(prog()), { passive: true });
+  addEventListener("resize", () => render(prog()));
+
+  // small on-load tease so the page never looks empty: first strokes appear on their own
+  const t0 = performance.now();
+  (function teaseStep(now) {
+    tease = Math.min(0.07, ((now - t0) / 1400) * 0.07);
+    render(prog());
+    if (tease < 0.07) requestAnimationFrame(teaseStep);
+  })(t0);
 } else if (ov && reduced) {
   pageIn();
 }

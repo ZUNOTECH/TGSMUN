@@ -1125,32 +1125,23 @@ body::after {
 .gavel-svg .ln {
   fill: none;
   stroke: var(--gold);
-  stroke-width: 5;
+  stroke-width: 6;
   stroke-linecap: round;
   stroke-linejoin: round;
   stroke-dasharray: 1 1;
-  stroke-dashoffset: 1;
-  animation: drawln 0.8s var(--ease-inout) forwards;
+  stroke-dashoffset: 1; /* traced by scroll (JS) */
 }
-.gavel-svg .ln--red { stroke: var(--red-lite); stroke-width: 4; }
-/* draw order: grip (bottom right) -> handle -> head -> bands -> block */
-.gavel-svg .d1 { animation-delay: 0.1s; animation-duration: 0.7s; }
-.gavel-svg .d2 { animation-delay: 0.4s; animation-duration: 0.9s; }
-.gavel-svg .d3 { animation-delay: 1s; }
-.gavel-svg .d4 { animation-delay: 1.5s; animation-duration: 0.4s; }
-.gavel-svg .d5 { animation-delay: 1.65s; animation-duration: 0.7s; }
-@keyframes drawln { to { stroke-dashoffset: 0; } }
-.intro-ov.armed .gavel-svg .ln { animation: none; stroke-dashoffset: 0; }
 
-.gavel-svg .g-gavel {
+.gavel-svg .g-swing {
   transform-box: view-box;
-  transform-origin: 872px 700px; /* the grip */
+  transform-origin: 950px 640px; /* the grip */
 }
-.intro-ov.struck .gavel-svg .g-gavel {
+.intro-ov.struck .gavel-svg .g-swing {
   transition: transform 0.5s cubic-bezier(0.55, 0, 0.65, 0.35);
-  transform: rotate(24deg) !important;
+  transform: rotate(-30deg) !important;
 }
 
+.intro-ov.struck 
 .gavel-svg .shock circle {
   opacity: 0;
   fill: none;
@@ -1187,7 +1178,7 @@ body::after {
 
 .ov-tag {
   position: absolute;
-  left: var(--gutter); bottom: clamp(70px, 12vh, 120px);
+  left: var(--gutter); top: 38%;
   text-align: left;
   transition: opacity 0.3s;
 }
