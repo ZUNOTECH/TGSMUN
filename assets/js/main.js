@@ -35,11 +35,12 @@ if (loader && !seen && !reduced) {
 } else {
   if (loader) loader.remove();
   sessionStorage.setItem("tgsmun-seen", "1");
+  const introWaits = document.querySelector(".intro") && !reduced; // intro calls pageIn itself
   if (curtain && !reduced) {
     curtain.classList.add("leave");
-    setTimeout(pageIn, 150);
+    if (!introWaits) setTimeout(pageIn, 150);
     setTimeout(() => curtain.classList.remove("leave"), 800);
-  } else {
+  } else if (!introWaits) {
     pageIn();
   }
 }
@@ -100,10 +101,12 @@ if (!isTouch && !reduced) {
 /* ============ nav: solid + hide on scroll down ============ */
 const nav = document.querySelector(".nav");
 let lastY = 0;
+const introEl = document.querySelector(".intro");
 function navUpdate() {
   const y = window.scrollY;
+  const floor = (introEl ? introEl.offsetHeight : 0) + 300;
   nav.classList.toggle("scrolled", y > 40);
-  nav.classList.toggle("hidden", y > 300 && y > lastY && !document.querySelector(".menu-overlay.open"));
+  nav.classList.toggle("hidden", y > floor && y > lastY && !document.querySelector(".menu-overlay.open"));
   lastY = y;
 }
 addEventListener("scroll", navUpdate, { passive: true });
@@ -335,4 +338,25 @@ if (mTracks.length && !reduced) {
     });
     requestAnimationFrame(mLoop);
   })();
+}
+
+/* ============ scroll intro: one element transitions into the page ============ */
+const intro = document.querySelector(".intro");
+if (intro && !reduced) {
+  const word = intro.querySelector(".intro-word");
+  const tag = intro.querySelector(".intro-tag");
+  const hint = intro.querySelector(".intro-hint");
+  let revealed = false;
+  const introTick = () => {
+    const total = intro.offsetHeight - innerHeight;
+    const p = Math.max(0, Math.min(1, -intro.getBoundingClientRect().top / total));
+    word.style.transform = `scale(${1 - p * 0.25}) translateY(${-p * 6}vh)`;
+    if (tag) tag.style.opacity = Math.max(0, 1 - p * 2.2);
+    if (hint) hint.style.opacity = Math.max(0, 1 - p * 3);
+    if (p > 0.6 && !revealed) { revealed = true; pageIn(); }
+  };
+  addEventListener("scroll", introTick, { passive: true });
+  introTick();
+} else if (intro && reduced) {
+  pageIn();
 }

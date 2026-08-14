@@ -211,7 +211,7 @@ body::after {
 .brand-text strong { font-family: var(--font-display); font-weight: 400; font-size: 1.15rem; letter-spacing: 0.08em; display: block; }
 .brand-text span { font-size: 0.62rem; letter-spacing: 0.26em; text-transform: uppercase; color: var(--ink-70); }
 
-.nav-links { display: flex; align-items: center; gap: 34px; }
+.nav-links { display: flex; align-items: center; gap: clamp(18px, 2vw, 30px); }
 .nav-links > a:not(.btn) {
   font-size: 0.8rem;
   font-weight: 600;
@@ -1095,3 +1095,42 @@ body::after {
 .qz-why { display: none; margin-top: 10px; font-size: 0.85rem; color: var(--ink-70); border-left: 2px solid var(--gold); padding-left: 12px; }
 .qz.done .qz-why { display: block; }
 @media (max-width: 700px) { .qz-opts { grid-template-columns: 1fr; } }
+
+
+/* ---------- scroll intro (single element -> home) ---------- */
+.intro { position: relative; height: 200vh; }
+.intro-sticky {
+  position: sticky; top: 0;
+  height: 100svh;
+  background: var(--red);
+  color: var(--ivory);
+  z-index: 600;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  overflow: clip;
+}
+.intro-word {
+  font-family: var(--font-display);
+  font-size: clamp(3.6rem, 14vw, 13rem);
+  text-transform: uppercase;
+  line-height: 1;
+  display: flex;
+  overflow: hidden;
+  will-change: transform;
+}
+.intro-word span { display: inline-block; transform: translateY(110%); animation: loadup 0.8s var(--ease-out) forwards; }
+.intro-tag { margin-top: 18px; color: rgba(242, 234, 216, 0.75); text-align: center; }
+.intro-hint {
+  position: absolute; bottom: clamp(24px, 5vh, 46px);
+  display: grid; place-items: center; gap: 10px;
+  font-size: 0.62rem; letter-spacing: 0.3em; text-transform: uppercase;
+  color: rgba(242, 234, 216, 0.8);
+}
+.intro-hint i { width: 1px; height: 44px; background: currentColor; animation: hintline 1.7s var(--ease-inout) infinite; }
+@keyframes hintline {
+  0% { transform: scaleY(0); transform-origin: top; }
+  45% { transform: scaleY(1); transform-origin: top; }
+  55% { transform: scaleY(1); transform-origin: bottom; }
+  100% { transform: scaleY(0); transform-origin: bottom; }
+}
+@media (prefers-reduced-motion: reduce) { .intro { display: none; } }

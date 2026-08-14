@@ -4,10 +4,11 @@ Static site (plain HTML/CSS/JS, no build step) for the TGS Model United Nations 
 
 ## Architecture
 
-- 4 pages: `index.html`, `committees.html`, `secretariat.html`, `register.html`
+- 5 pages: `index.html`, `committees.html`, `rop.html` (ROP Academy), `secretariat.html`, `register.html`
 - Shared styles: `assets/css/style.css` — the design system lives here
 - Shared motion engine: `assets/js/main.js` — all animation is hand-rolled vanilla JS (no libraries)
-- Nav / loader / curtain / menu-overlay / footer markup is duplicated per page — edit all 4 pages when changing any of them
+- Nav / loader / curtain / menu-overlay / footer markup is duplicated per page — edit all 5 pages when changing any of them
+- `index.html` has no loader — it opens with a scroll intro (`.intro`, sticky red plate) that reveals the page; subpages keep the loader
 
 ## Design system (event theme: black & red with gold accents)
 
