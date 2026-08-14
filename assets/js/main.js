@@ -345,8 +345,8 @@ const opening = document.querySelector(".opening");
 const ov = document.querySelector(".intro-ov");
 if (opening && ov && !reduced) {
   // shorter runway on repeat visits
-  if (sessionStorage.getItem("tgsmun-gavel")) { opening.style.height = "190vh"; ov.classList.add("armed"); }
-  else { opening.style.height = "260vh"; }
+  if (sessionStorage.getItem("tgsmun-gavel")) { opening.style.height = "220vh"; ov.classList.add("armed"); }
+  else { opening.style.height = "300vh"; }
   sessionStorage.setItem("tgsmun-gavel", "1");
 
   const gavel = ov.querySelector(".g-gavel");
@@ -361,26 +361,26 @@ if (opening && ov && !reduced) {
     if (p > 0.01) ov.classList.add("armed"); // release the load animation's transform lock
     if (!struck) {
       // wind-up: scrubbed with scroll
-      gavel.style.transform = `rotate(${2 + p * 55}deg)`;
+      gavel.style.transform = `rotate(${55 + p * 20}deg)`;
     }
     if (hint) hint.style.opacity = Math.max(0, 1 - p * 4);
     if (tag) tag.style.opacity = Math.max(0, 1 - Math.max(0, p - 0.5) * 4);
 
     // the strike commits at 62% — you can't half-bang a gavel
-    if (p >= 0.62 && !struck) {
+    if (p >= 0.52 && !struck) {
       struck = true;
       ov.classList.add("struck");
       if (!shown) { shown = true; pageIn(); }
     }
-    if (p < 0.5 && struck) { // re-arm on scroll back
+    if (p < 0.4 && struck) { // re-arm on scroll back
       struck = false;
       ov.classList.remove("struck");
       ov.classList.add("armed");
     }
 
-    // circular wipe: scroll-driven after the strike
-    const w = Math.max(0, (p - 0.7) / 0.3);
-    ov.style.setProperty("--holeR", (w * 130) + "vmax");
+    // circular wipe: slow start, scroll-driven after the strike
+    const w = Math.pow(Math.max(0, (p - 0.6) / 0.4), 1.6);
+    ov.style.setProperty("--holeR", (w * 145) + "vmax");
     ov.classList.toggle("gone", p >= 0.995);
   };
   addEventListener("scroll", openTick, { passive: true });
