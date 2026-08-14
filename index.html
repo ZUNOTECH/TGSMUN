@@ -7,12 +7,40 @@
   <meta name="description" content="TGSMUN 2026 — the fifth edition of The Gaudium School's Model United Nations, Hyderabad. 29–30 August 2026. 14 committees, 700 delegates." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Archivo:wght@400;500;600;700&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet" />
   <script>document.documentElement.classList.add("js")</script>
   <link rel="stylesheet" href="assets/css/style.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230e0d0b'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='%23d9a441' font-family='Arial Narrow,sans-serif' font-weight='bold'>T</text></svg>" />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' fill='%230e0d0b'/><text x='50' y='72' font-size='62' text-anchor='middle' fill='%23d9a441' font-family='Georgia,serif' font-weight='bold'>T</text></svg>" />
 </head>
 <body>
+
+  <!-- ============ INTRO OVERLAY: black → gold pencil draw → bang → circle wipe ============ -->
+  <div class="intro-ov" aria-hidden="true">
+    <div class="intro-stage">
+      <svg class="gavel-svg" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
+        <g class="shock">
+          <circle cx="445" cy="530" r="80" stroke="#d9a441" stroke-width="3" />
+          <circle cx="445" cy="530" r="80" stroke="#e0524b" stroke-width="2" />
+          <circle cx="445" cy="530" r="80" stroke="#d9a441" stroke-width="1.5" />
+        </g>
+
+        <!-- sound block: domed puck on a stepped base -->
+        <rect class="ln" x="345" y="525" width="200" height="58" rx="29" />
+        <rect class="ln" x="305" y="583" width="280" height="40" rx="20" />
+        <rect class="ln" x="265" y="623" width="360" height="40" rx="20" />
+
+        <!-- the gavel, swinging about its grip -->
+        <g class="g-swing">
+          <rect class="ln" x="430" y="284" width="270" height="32" rx="16" />
+          <rect class="ln" x="690" y="272" width="58" height="56" rx="20" />
+          <rect class="ln" x="310" y="190" width="140" height="220" rx="28" />
+          <line class="ln" x1="310" y1="248" x2="450" y2="248" />
+          <line class="ln" x1="310" y1="352" x2="450" y2="352" />
+        </g>
+      </svg>
+      <p class="intro-cap label">The Gaudium School Model United Nations · Fifth Edition</p>
+    </div>
+  </div>
 
   <div class="curtain"></div>
 
@@ -32,6 +60,7 @@
         <a href="index.html#schedule">Itinerary</a>
         <a href="secretariat.html">Secretariat</a>
         <a href="index.html#contact">Contact</a>
+        <a href="whatsapp.html" class="nav-wa" aria-label="Delegate WhatsApp groups" title="Delegate WhatsApp groups"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91S17.5 2 12.04 2zm0 18.15h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.16 8.16 0 0 1-1.25-4.38c0-4.54 3.7-8.23 8.24-8.23 2.2 0 4.27.86 5.82 2.42a8.18 8.18 0 0 1 2.41 5.82c0 4.54-3.69 8.23-8.23 8.23zm4.52-6.16c-.25-.12-1.47-.72-1.69-.81-.23-.08-.39-.12-.56.13-.16.24-.64.8-.79.97-.14.16-.29.18-.54.06-.25-.12-1.05-.39-1.99-1.23-.74-.66-1.23-1.47-1.38-1.72-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.41.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07s.89 2.4 1.02 2.56c.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg></a>
         <a href="register.html" class="btn btn--solid btn--sm">Register <span class="arr">→</span></a>
       </nav>
       <button class="nav-toggle" aria-label="Menu"><span></span><span></span><span></span></button>
@@ -45,14 +74,12 @@
     <a href="register.html"><i>04</i> Register</a>
     <a href="index.html#schedule"><i>05</i> Itinerary</a>
     <a href="secretariat.html"><i>06</i> Secretariat</a>
-    <a href="index.html#contact"><i>07</i> Contact</a>
+    <a href="whatsapp.html"><i>07</i> WhatsApp Groups</a>
+    <a href="index.html#contact"><i>08</i> Contact</a>
   </div>
 
-
-  <!-- ================= OPENING: the gavel calls the session to order ================= -->
-  <div class="opening">
-  <!-- ================= HERO (calm on load) ================= -->
-    <section class="hero">
+  <!-- ================= HERO ================= -->
+  <section class="hero">
     <div class="container hero-inner">
       <div class="hero-meta-top">
         <span class="label"><b>●</b> 29–30 August 2026</span>
@@ -78,35 +105,7 @@
         <span class="label">Scroll ↓</span>
       </div>
     </div>
-    </section>
-
-    <div class="intro-ov" aria-hidden="true">
-      <svg class="gavel-svg" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg">
-        <g class="shock">
-          <circle cx="350" cy="580" r="90" stroke="#e0524b" stroke-width="3"/>
-          <circle cx="350" cy="580" r="90" stroke="#d9a441" stroke-width="2"/>
-          <circle cx="350" cy="580" r="90" stroke="#e0524b" stroke-width="1.5"/>
-        </g>
-        <!-- sound block: domed puck on a stepped base -->
-        <rect class="ln t6" pathLength="1" x="255" y="596" width="190" height="70" rx="35"/>
-        <rect class="ln t7" pathLength="1" x="205" y="666" width="290" height="42" rx="21"/>
-        <rect class="ln t8" pathLength="1" x="170" y="708" width="360" height="42" rx="21"/>
-        <!-- gavel: swings around the grip -->
-        <g class="g-swing">
-          <g transform="rotate(48 950 640)">
-            <rect class="ln t2" pathLength="1" x="470" y="626" width="470" height="28" rx="14"/>
-            <rect class="ln t1" pathLength="1" x="936" y="616" width="76" height="48" rx="18"/>
-            <rect class="ln t3" pathLength="1" x="318" y="458" width="164" height="364" rx="30"/>
-            <line class="ln t4" pathLength="1" x1="318" y1="524" x2="482" y2="524"/>
-            <line class="ln t5" pathLength="1" x1="318" y1="756" x2="482" y2="756"/>
-          </g>
-        </g>
-      </svg>
-      <p class="ov-tag label">The Gaudium School Model United Nations<br />Fifth Edition · 29–30 August 2026</p>
-      <span class="ov-stamp">TGSMUN</span>
-      <div class="ov-hint">Scroll<i></i></div>
-    </div>
-  </div>
+  </section>
 
   <!-- ================= SCRUB STATEMENT ================= -->
   <section class="statement" data-scrub>
@@ -124,19 +123,19 @@
   <!-- ================= STATS ================= -->
   <section class="stats-band">
     <div class="stats-row">
-      <div class="stat-cell rv"><b><span data-count="700">0</span></b><span>Delegates</span></div>
-      <div class="stat-cell rv rv-d1"><b><span data-count="14">0</span></b><span>Committees</span></div>
-      <div class="stat-cell rv rv-d2"><b><span data-count="25">0</span><sup>+</sup></b><span>Schools</span></div>
-      <div class="stat-cell rv rv-d3"><b><span data-count="5">0</span></b><span>Editions</span></div>
+      <div class="stat-cell"><b><span data-count="700">0</span></b><span>Delegates</span></div>
+      <div class="stat-cell"><b><span data-count="14">0</span></b><span>Committees</span></div>
+      <div class="stat-cell"><b><span data-count="25">0</span><sup>+</sup></b><span>Schools</span></div>
+      <div class="stat-cell"><b><span data-count="5">0</span></b><span>Editions</span></div>
     </div>
   </section>
 
-  <!-- ================= ABOUT ================= -->
-  <section class="section" id="about">
+  <!-- ================= 01 · LETTER FROM THE SECRETARY-GENERAL ================= -->
+  <section class="section" id="letter">
     <div class="container">
-      <div class="sec-head rv">
+      <div class="sec-head">
         <span class="idx">01</span>
-        <span class="label">The Conference</span>
+        <span class="label">Letter from the Secretary-General</span>
         <span class="grow"></span>
         <span class="label label--gold">Fifth Edition</span>
       </div>
@@ -156,15 +155,32 @@
               Whether it's your first placard or your fifteenth gavel, there is a seat
               across our senior and junior committees with your name on it.
             </p>
-            <a href="register.html" class="btn" style="margin-top:14px">Join the Fifth Edition <span class="arr">→</span></a>
+            <a href="register.html" class="btn" style="margin-top:12px">Join the Fifth Edition <span class="arr">→</span></a>
           </div>
         </div>
+
         <div class="letter-plate clip">
           <span class="label">From the Secretary-General</span>
           <blockquote>
-            "This year our theme — <em>Dialogue over Division</em> — asks each of us to
-            listen before we speak, and to seek common ground before claiming victory.
-            I look forward to watching you rise to that challenge."
+            <p>Dear Delegates,</p>
+            <p>
+              It is my privilege to welcome you to the fifth edition of the
+              Gaudium School Model United Nations. For five years this conference has
+              been built, argued over and gavelled into being entirely by students —
+              and every August it hands the floor back to you.
+            </p>
+            <p>
+              Over two days you will represent people whose convictions may be nothing
+              like your own. That is the whole exercise. The best delegates in this
+              room will not be the loudest; they will be the ones who research
+              relentlessly, listen carefully, and find the sentence a divided committee
+              can finally agree to sign.
+            </p>
+            <p>
+              <em>This year our theme — Dialogue over Division — asks each of us to
+              listen before we speak, and to seek common ground before claiming
+              victory. I look forward to watching you rise to that challenge.</em>
+            </p>
           </blockquote>
           <div class="letter-sign">
             <span class="seal">SG</span>
@@ -178,7 +194,7 @@
     </div>
   </section>
 
-  <!-- ================= COMMITTEES (pinned horizontal) ================= -->
+  <!-- ================= 02 · COMMITTEES (pinned horizontal strip) ================= -->
   <section class="hpin" id="committees">
     <div class="hpin-sticky">
       <div class="hpin-head">
@@ -194,71 +210,61 @@
 
       <div class="hpin-track">
         <a class="com-card" href="committees.html#unsc">
-          <span class="no">C·01</span>
-          <span class="abbr">UNSC</span>
+          <span class="no">C·01</span><span class="abbr">UNSC</span>
           <span class="full">United Nations Security Council</span>
           <p class="agenda">Agenda to be announced.</p>
           <span class="foot"><span>Double delegation</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#unhrc">
-          <span class="no">C·02</span>
-          <span class="abbr">UNHRC</span>
+          <span class="no">C·02</span><span class="abbr">UNHRC</span>
           <span class="full">Human Rights Council</span>
           <p class="agenda">Agenda to be announced.</p>
           <span class="foot"><span>Senior</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#disec">
-          <span class="no">C·03</span>
-          <span class="abbr">DISEC</span>
+          <span class="no">C·03</span><span class="abbr">DISEC</span>
           <span class="full">Disarmament &amp; International Security</span>
           <p class="agenda">Agenda to be announced.</p>
           <span class="foot"><span>Senior</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#aippm">
-          <span class="no">C·04</span>
-          <span class="abbr">AIPPM</span>
+          <span class="no">C·04</span><span class="abbr">AIPPM</span>
           <span class="full">All India Political Parties Meet</span>
           <p class="agenda">Agenda to be announced.</p>
           <span class="foot"><span>Special ROP</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#hcc">
-          <span class="no">C·05</span>
-          <span class="abbr">HCC</span>
+          <span class="no">C·05</span><span class="abbr">HCC</span>
           <span class="full">Historic Crisis Committee</span>
           <p class="agenda">Briefing to be announced.</p>
           <span class="foot"><span>Crisis</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#oas">
-          <span class="no">C·06</span>
-          <span class="abbr">OAS</span>
+          <span class="no">C·06</span><span class="abbr">OAS</span>
           <span class="full">Organization of American States</span>
           <p class="agenda">Agenda to be announced.</p>
           <span class="foot"><span>Senior</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#opec">
-          <span class="no">C·07</span>
-          <span class="abbr">OPEC</span>
+          <span class="no">C·07</span><span class="abbr">OPEC</span>
           <span class="full">Org. of the Petroleum Exporting Countries</span>
           <p class="agenda">Crisis briefing to be announced.</p>
           <span class="foot"><span>Crisis</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#nba">
-          <span class="no">C·08</span>
-          <span class="abbr">NBA Draft</span>
+          <span class="no">C·08</span><span class="abbr">NBA Draft</span>
           <span class="full">All-Time Greats Draft</span>
           <p class="agenda">Build the greatest roster in history — and defend every pick.</p>
           <span class="foot"><span>Semi-crisis</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#ip">
-          <span class="no">C·09</span>
-          <span class="abbr">Press</span>
+          <span class="no">C·09</span><span class="abbr">Press</span>
           <span class="full">International Press</span>
           <p class="agenda">Reportage, photography and caricature across every committee room.</p>
           <span class="foot"><span>Press corps</span><span class="arr">→</span></span>
         </a>
         <a class="com-card" href="committees.html#junior">
-          <span class="no">C·10–14</span>
-          <span class="abbr">Junior Wing</span>
+          <span class="no">C·10–14</span><span class="abbr">Junior Wing</span>
           <span class="full">UNICEF · UNESCO · WHO · CSW · UNOOSA</span>
           <p class="agenda">Five committees built for younger delegates finding their voice.</p>
           <span class="foot"><span>5 committees</span><span class="arr">→</span></span>
@@ -276,7 +282,7 @@
         <span class="label label--gold">Convening in</span>
         <span class="display">29–30 August 2026</span>
       </div>
-      <div class="countdown countdown--big rv rv-d1" aria-label="Countdown to conference">
+      <div class="countdown countdown--big rv" aria-label="Countdown to conference">
         <div class="count-cell" data-cd="d"><div class="digits"></div><span class="unit">Days</span></div>
         <div class="count-cell" data-cd="h"><div class="digits"></div><span class="unit">Hours</span></div>
         <div class="count-cell" data-cd="m"><div class="digits"></div><span class="unit">Min</span></div>
@@ -292,10 +298,10 @@
     </div>
   </div>
 
-  <!-- ================= ITINERARY ================= -->
+  <!-- ================= 03 · ITINERARY ================= -->
   <section class="section" id="schedule">
     <div class="container">
-      <div class="sec-head rv">
+      <div class="sec-head">
         <span class="idx">03</span>
         <span class="label">Itinerary</span>
         <span class="grow"></span>
@@ -326,16 +332,16 @@
           <div class="sched-row"><time>16:00</time><p>Closing ceremony &amp; awards</p></div>
         </div>
       </div>
-      <div class="note-plate rv" style="margin-top: clamp(30px, 4vw, 50px)">
+      <div class="note-plate rv" style="margin-top: clamp(18px, 2.2vw, 28px)">
         <b>Note —</b> exact timings will be confirmed in the delegate handbook closer to the conference.
       </div>
     </div>
   </section>
 
-  <!-- ================= FAQ ================= -->
+  <!-- ================= 04 · FAQ ================= -->
   <section class="section" id="faq" style="padding-top:0">
     <div class="container">
-      <div class="sec-head rv">
+      <div class="sec-head">
         <span class="idx">04</span>
         <span class="label">Questions</span>
         <span class="grow"></span>
@@ -399,7 +405,6 @@
     </div>
   </section>
 
-  <!-- ================= FOOTER ================= -->
   <footer class="footer">
     <div class="container">
       <h2 class="footer-title display">
@@ -413,7 +418,7 @@
         <div>
           <span class="label">Conference</span>
           <ul>
-            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#letter">Letter from the SG</a></li>
             <li><a href="committees.html">Committees</a></li>
             <li><a href="index.html#schedule">Itinerary</a></li>
             <li><a href="secretariat.html">Secretariat</a></li>
@@ -423,8 +428,9 @@
           <span class="label">Delegates</span>
           <ul>
             <li><a href="register.html">Register</a></li>
+            <li><a href="rop.html">ROP Academy</a></li>
+            <li><a href="whatsapp.html">WhatsApp Groups</a></li>
             <li><a href="index.html#faq">FAQs</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
           </ul>
         </div>
         <div>
@@ -442,6 +448,7 @@
     </div>
   </footer>
 
+  <script src="assets/js/vendor/anime.umd.min.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>
