@@ -35,7 +35,7 @@ if (loader && !seen && !reduced) {
 } else {
   if (loader) loader.remove();
   sessionStorage.setItem("tgsmun-seen", "1");
-  const introWaits = document.querySelector(".intro") && !reduced; // intro calls pageIn itself
+  const introWaits = document.querySelector(".intro-ov") && !reduced; // opening calls pageIn itself
   if (curtain && !reduced) {
     curtain.classList.add("leave");
     if (!introWaits) setTimeout(pageIn, 150);
@@ -101,10 +101,10 @@ if (!isTouch && !reduced) {
 /* ============ nav: solid + hide on scroll down ============ */
 const nav = document.querySelector(".nav");
 let lastY = 0;
-const introEl = document.querySelector(".intro");
+const introEl = document.querySelector(".opening");
 function navUpdate() {
   const y = window.scrollY;
-  const floor = (introEl ? introEl.offsetHeight : 0) + 300;
+  const floor = (introEl ? introEl.offsetHeight - innerHeight : 0) + 300;
   nav.classList.toggle("scrolled", y > 40);
   nav.classList.toggle("hidden", y > floor && y > lastY && !document.querySelector(".menu-overlay.open"));
   lastY = y;
@@ -340,23 +340,52 @@ if (mTracks.length && !reduced) {
   })();
 }
 
-/* ============ scroll intro: one element transitions into the page ============ */
-const intro = document.querySelector(".intro");
-if (intro && !reduced) {
-  const word = intro.querySelector(".intro-word");
-  const tag = intro.querySelector(".intro-tag");
-  const hint = intro.querySelector(".intro-hint");
-  let revealed = false;
-  const introTick = () => {
-    const total = intro.offsetHeight - innerHeight;
-    const p = Math.max(0, Math.min(1, -intro.getBoundingClientRect().top / total));
-    word.style.transform = `scale(${1 - p * 0.25}) translateY(${-p * 6}vh)`;
-    if (tag) tag.style.opacity = Math.max(0, 1 - p * 2.2);
-    if (hint) hint.style.opacity = Math.max(0, 1 - p * 3);
-    if (p > 0.6 && !revealed) { revealed = true; pageIn(); }
+/* ============ gavel opening: wind-up -> strike -> stamp -> wipe ============ */
+const opening = document.querySelector(".opening");
+const ov = document.querySelector(".intro-ov");
+if (opening && ov && !reduced) {
+  // shorter runway on repeat visits
+  if (sessionStorage.getItem("tgsmun-gavel")) { opening.style.height = "190vh"; ov.classList.add("armed"); }
+  else { opening.style.height = "260vh"; }
+  sessionStorage.setItem("tgsmun-gavel", "1");
+
+  const gavel = ov.querySelector(".g-gavel");
+  const tag = ov.querySelector(".ov-tag");
+  const hint = ov.querySelector(".ov-hint");
+  let struck = false, shown = false;
+
+  const openTick = () => {
+    const total = opening.offsetHeight - innerHeight;
+    const p = Math.max(0, Math.min(1, scrollY / total));
+
+    if (p > 0.01) ov.classList.add("armed"); // release the load animation's transform lock
+    if (!struck) {
+      // wind-up: scrubbed with scroll
+      gavel.style.transform = `rotate(${2 + p * 55}deg)`;
+    }
+    if (hint) hint.style.opacity = Math.max(0, 1 - p * 4);
+    if (tag) tag.style.opacity = Math.max(0, 1 - Math.max(0, p - 0.5) * 4);
+
+    // the strike commits at 62% — you can't half-bang a gavel
+    if (p >= 0.62 && !struck) {
+      struck = true;
+      ov.classList.add("struck");
+      if (!shown) { shown = true; pageIn(); }
+    }
+    if (p < 0.5 && struck) { // re-arm on scroll back
+      struck = false;
+      ov.classList.remove("struck");
+      ov.classList.add("armed");
+    }
+
+    // circular wipe: scroll-driven after the strike
+    const w = Math.max(0, (p - 0.7) / 0.3);
+    ov.style.setProperty("--holeR", (w * 130) + "vmax");
+    ov.classList.toggle("gone", p >= 0.995);
   };
-  addEventListener("scroll", introTick, { passive: true });
-  introTick();
-} else if (intro && reduced) {
+  addEventListener("scroll", openTick, { passive: true });
+  addEventListener("resize", openTick);
+  openTick();
+} else if (ov && reduced) {
   pageIn();
 }
