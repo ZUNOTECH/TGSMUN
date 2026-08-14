@@ -466,7 +466,9 @@ body::after {
   font-variant-numeric: tabular-nums;
 }
 .stat-cell b sup { font-size: 0.38em; color: var(--gold); opacity: 0.75; }
-.stat-cell span { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-70); }
+/* direct child only — the counter's inner <span> must keep the big number styling */
+.stat-cell > span { font-size: 0.72rem; letter-spacing: 0.22em; text-transform: uppercase; color: var(--ink-70); }
+.stat-cell b span { font: inherit; color: inherit; letter-spacing: inherit; text-transform: none; }
 
 /* ---------- about ---------- */
 .about-grid {
