@@ -4,11 +4,13 @@ Static site (plain HTML/CSS/JS, no build step) for the TGS Model United Nations 
 
 ## Architecture
 
-- 5 pages: `index.html`, `committees.html`, `rop.html` (ROP Academy), `secretariat.html`, `register.html`
+- 6 pages: `index.html`, `committees.html`, `rop.html` (ROP Academy), `whatsapp.html`, `secretariat.html`, `register.html`
 - Shared styles: `assets/css/style.css` — the design system lives here
-- Shared motion engine: `assets/js/main.js` — all animation is hand-rolled vanilla JS (no libraries)
-- Nav / loader / curtain / menu-overlay / footer markup is duplicated per page — edit all 5 pages when changing any of them
-- `index.html` has no loader — it opens with a scroll intro (`.intro`, sticky red plate) that reveals the page; subpages keep the loader
+- Shared motion engine: `assets/js/main.js`, built on anime.js v4 vendored at `assets/js/vendor/anime.umd.min.js` (MIT, no CDN)
+- Committee data: `assets/js/committees.js` is the SINGLE SOURCE OF TRUTH — `committees.html` and `whatsapp.html` both render from it. Add a committee, a guide URL or a WhatsApp invite there only.
+- One shared scroll pipeline in `main.js` (single passive listener → rAF batch); register new effects with `addScrollTask()` rather than adding listeners
+- Nav / loader / curtain / menu-overlay / footer markup is duplicated per page — edit all 6 pages when changing any of them
+- `index.html` has no loader — it opens with `.intro-ov`, a fixed black overlay: gold gavel drawn by `createDrawable`, a bang, then a fixed 1200ms circular mask wipe (never scroll-scrubbed). One-time per tab; subpages keep the loader.
 
 ## Design system (event theme: black & red with gold accents)
 
@@ -17,8 +19,9 @@ All colors are CSS variables at the top of `style.css`:
 `--red` (crimson plates), `--red-lite` (red for small text on black), `--gold` (accents),
 `--ivory` (text on red plates; also the inverted footer/marquee strips).
 
-Fonts via Google Fonts: Anton (display, uppercase), Archivo (body), Instrument Serif italic (accents).
-Deliberately single-theme (no light/dark variants).
+Fonts via Google Fonts: Bodoni Moda (display serif + its italic for emphasis) and Archivo (body).
+No script/cursive faces anywhere. Deliberately single-theme (no light/dark variants).
+Spacing scale is deliberately tight (sections ~34–60px) — keep new sections on it.
 
 ## Motion conventions
 
@@ -26,7 +29,8 @@ Deliberately single-theme (no light/dark variants).
 - `.rv` (+ `.rv-d1..d3`) = scroll fade-up reveal; `.clip` = clip-path reveal
 - Preloader plays once per tab (sessionStorage `tgsmun-seen`); curtain transition between pages
 - Countdown date: `CONFERENCE_DATE` at the top of `main.js`
-- Pinned horizontal committees track on the homepage (`.hpin`); falls back to scroll-snap under 860px
+- Pinned horizontal committees track on the homepage (`.hpin`): scroll sets a target, rAF eases toward it (smooth at any speed); falls back to scroll-snap under 860px
+- The marquee is a constant CSS animation and must NOT be coupled to scroll velocity
 - Everything respects `prefers-reduced-motion`
 
 ## Git / deploy
@@ -48,4 +52,5 @@ CdA Myra Taneja, USG Finance Anant.
 
 Agendas & committee sizes (all "TBA"), fees, registration form link, background-guide PDFs,
 WhatsApp group links, exact itinerary timings, further secretariat appointments.
-AIPPM/NBA ROP primers + quizzes on `committees.html` are drafts — refine against the real ROP.
+AIPPM/NBA ROP primers + 6-question scenario quizzes on `rop.html` are Secretariat drafts — have the EB verify them.
+Committee crests: `logo` is null for all 14, so styled acronym badges render — drop real files in `assets/img/committees/`.
