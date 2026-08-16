@@ -14,6 +14,8 @@ Static site (plain HTML/CSS/JS, no build step) for the TGS Model United Nations 
 - `index.html` landing is `.land` — ONE element (the TGSMUN 2026 wordmark) on a 170vh sticky stage. A scroll task in `main.js` tips it in perspective (`rotateX`/`translateZ`/blur) so it recedes and hands off to `.land-next`, which carries the date, venue and CTAs. Keep the fade finishing at p≈1 or a black dead-zone opens up.
 - `committees.html` is a directory, not a card grid: `.dir-list` (number + acronym only, grouped by wing) drives one sticky `.dir-panel`. No full committee names anywhere on the site. Rows reveal on scroll via `data-in`; on ≤860px the panel moves above the list and stays sticky.
 - No italics and no pink anywhere — `.serif-i` survives only as a neutered no-op hook.
+- `rop.html` is two tabbed primers (AIPPM / NBA Draft). Each panel is a `.rop-body` = `.rop-doc` (a stack of `.rop-sec` blocks) + a `.rop-toc` contents rail generated at runtime from the `.rop-sec` headings — **add the official ROP by dropping more `.rop-sec` blocks in, or by filling the `.rop-slot`; nothing else needs touching.**
+- Quiz questions live in `assets/js/rop-quiz.js` (`window.TGSMUN_ROP_QUIZ.aippm` / `.nba`) — edit questions there only. "Do the Quiz" opens `.qbox`, a full-screen red typeform: one question at a time, per-option feedback, Next, then a score screen. `.qbox` sits at z-index 480 *under* the nav (500) so the nav can simply be parked off-screen and slid back when the pointer reaches the top strip (`.qbox-peek`, or a mousemove above y=70).
 
 ## Design system (event theme: black & red with gold accents)
 

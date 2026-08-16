@@ -1072,39 +1072,150 @@ body::after {
 }
 @media (max-width: 560px) { .acc-grid { grid-template-columns: 1fr; } }
 
-/* ---------- ROP academy + quiz ---------- */
-.rop-block { border: 1px solid var(--line-strong); padding: clamp(18px, 2.2vw, 30px); margin-bottom: clamp(16px, 2vw, 26px); background: var(--paper); }
-.rop-block > .display { font-size: clamp(1.6rem, 3vw, 2.4rem); margin-bottom: 8px; }
-.rop-block .rop-sub { color: var(--ink-70); font-size: 0.95rem; max-width: 68ch; margin-bottom: 26px; }
-.rop-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); margin-bottom: clamp(26px, 3vw, 40px); }
-.rop-step { background: var(--paper); padding: clamp(16px, 2vw, 26px); }
-.rop-step b { display: block; font-size: 0.95rem; margin-bottom: 6px; }
-.rop-step b i { font-style: normal; color: var(--gold); font-family: var(--font-display); margin-right: 8px; }
-.rop-step p { font-size: 0.85rem; color: var(--ink-70); }
-@media (max-width: 860px) { .rop-steps { grid-template-columns: 1fr; } }
+/* ==========================================================================
+   ROP ACADEMY — tabbed primers written to take the official ROP later
 
-.quiz { border-top: 1px solid var(--line-strong); padding-top: 22px; }
-.quiz-tag { display: flex; align-items: baseline; justify-content: space-between; gap: 20px; margin-bottom: 18px; }
-.quiz-score { font-size: 0.75rem; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-70); font-variant-numeric: tabular-nums; }
-.qz { margin-bottom: 22px; }
-.qz-q { font-weight: 600; font-size: 0.98rem; margin-bottom: 12px; }
-.qz-q .qn { color: var(--gold); font-family: var(--font-display); margin-right: 10px; }
-.qz-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-.qz-opt {
-  text-align: left;
-  padding: 12px 16px;
-  border: 1px solid var(--line);
-  font-size: 0.88rem;
-  color: var(--ink-70);
-  transition: border-color 0.25s, background 0.25s, color 0.25s;
+   Each committee is one .rop-panel holding a .rop-doc. A .rop-doc is just a
+   stack of .rop-sec blocks, so publishing the official rules means dropping
+   more .rop-sec blocks (or filling .rop-slot) into the same document — the
+   spacing, measure and tab structure all hold without further CSS.
+   ========================================================================== */
+.rop-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--line);
+  margin-bottom: clamp(30px, 4vw, 58px);
 }
-.qz-opt:hover { border-color: var(--ink); color: var(--ink); }
-.qz.done .qz-opt { pointer-events: none; }
-.qz-opt.correct { border-color: var(--gold); color: var(--gold); background: rgba(217, 164, 65, 0.07); }
-.qz-opt.wrong { border-color: var(--red-lite); color: var(--red-lite); background: rgba(224, 82, 75, 0.06); }
-.qz-why { display: none; margin-top: 10px; font-size: 0.85rem; color: var(--ink-70); border-left: 2px solid var(--gold); padding-left: 12px; }
-.qz.done .qz-why { display: block; }
-@media (max-width: 700px) { .qz-opts { grid-template-columns: 1fr; } }
+.rop-tab {
+  position: relative;
+  padding: 14px clamp(16px, 2.4vw, 34px) 16px;
+  text-align: left;
+  color: var(--ink-50);
+  transition: color 0.3s;
+}
+.rop-tab .t {
+  display: block;
+  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  font-size: clamp(1.2rem, 2.4vw, 1.9rem); line-height: 1;
+}
+.rop-tab .sub {
+  display: block; margin-top: 7px;
+  font-size: 0.52rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-50);
+}
+.rop-tab::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: -1px; height: 2px;
+  background: var(--gold);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.35s var(--ease-out);
+}
+.rop-tab:hover { color: var(--ink-70); }
+.rop-tab.on { color: var(--gold); }
+.rop-tab.on::after { transform: scaleX(1); }
+.rop-panel[hidden] { display: none; }
+
+/* ---- the primer document: generous measure, generous air ----
+   .rop-body pairs the document with a sticky contents rail that is generated
+   from the .rop-sec headings at runtime, so new sections (the official ROP,
+   for one) appear in the rail with no extra wiring. ---- */
+.rop-body {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(190px, 250px);
+  gap: clamp(24px, 4vw, 72px);
+  align-items: start;
+}
+.rop-doc { max-width: 76ch; }
+.rop-toc { position: sticky; top: 100px; border-left: 1px solid var(--line); padding-left: 18px; }
+.rop-toc .h {
+  display: block; margin-bottom: 14px;
+  font-size: 0.54rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--ink-50);
+}
+.rop-toc a {
+  display: block; padding: 7px 0;
+  font-size: 0.82rem; color: var(--ink-50);
+  transition: color 0.25s, padding-left 0.25s var(--ease-out);
+}
+.rop-toc a:hover, .rop-toc a.on { color: var(--gold); padding-left: 6px; }
+.rop-toc a i { font-style: normal; margin-right: 9px; opacity: 0.7; }
+@media (max-width: 1000px) {
+  .rop-body { grid-template-columns: 1fr; }
+  .rop-toc { display: none; }
+}
+.rop-lede {
+  font-size: clamp(1.05rem, 1.7vw, 1.35rem);
+  line-height: 1.6;
+  color: var(--ink-70);
+}
+.rop-lede b { color: var(--ink); font-weight: 600; }
+
+.rop-sec { margin-top: clamp(34px, 4.4vw, 64px); }
+.rop-sec > h3 {
+  font-family: var(--font-display); font-weight: 400; text-transform: uppercase;
+  font-size: clamp(1.35rem, 2.6vw, 2rem); line-height: 1;
+  margin-bottom: clamp(14px, 1.8vw, 22px);
+}
+.rop-sec > h3 .rn { color: var(--gold); margin-right: 12px; }
+.rop-sec > p { color: var(--ink-70); line-height: 1.78; font-size: 0.96rem; }
+.rop-sec > p + p { margin-top: 14px; }
+
+/* key/value facts — the fastest place to add a confirmed detail later */
+.rop-facts {
+  display: grid; grid-template-columns: max-content 1fr;
+  gap: 12px clamp(18px, 3vw, 40px);
+  border-top: 1px solid var(--line);
+  padding-top: clamp(16px, 2vw, 22px);
+}
+.rop-facts dt {
+  font-size: 0.56rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-50); padding-top: 4px;
+}
+.rop-facts dd { font-size: 0.95rem; line-height: 1.6; }
+
+/* how a session runs — one step per row, room to breathe */
+.rop-flow { border-top: 1px solid var(--line); }
+.rop-flow > li {
+  display: grid; grid-template-columns: 52px 1fr;
+  gap: clamp(12px, 2vw, 26px);
+  padding: clamp(18px, 2.4vw, 28px) 0;
+  border-bottom: 1px solid var(--line);
+}
+.rop-flow .sn { font-family: var(--font-display); font-size: 1.4rem; line-height: 1; color: var(--gold); }
+.rop-flow b { display: block; font-size: 1rem; margin-bottom: 8px; }
+.rop-flow p { font-size: 0.93rem; color: var(--ink-70); line-height: 1.75; }
+
+/* glossary */
+.rop-terms { border-top: 1px solid var(--line); }
+.rop-terms > div {
+  display: grid; grid-template-columns: minmax(130px, 190px) 1fr;
+  gap: clamp(12px, 2vw, 26px);
+  padding: 15px 0;
+  border-bottom: 1px solid var(--line);
+}
+.rop-terms dt { font-weight: 600; font-size: 0.93rem; }
+.rop-terms dd { font-size: 0.92rem; color: var(--ink-70); line-height: 1.72; }
+
+/* reserved slot — swap the copy for the real document when it exists */
+.rop-slot {
+  border: 1px dashed var(--line-strong);
+  padding: clamp(18px, 2.4vw, 30px);
+  font-size: 0.93rem; color: var(--ink-70); line-height: 1.72;
+}
+.rop-slot b { color: var(--gold); font-weight: 600; }
+
+/* launch strip at the foot of each primer */
+.rop-launch {
+  margin-top: clamp(34px, 4.4vw, 64px);
+  border-top: 1px solid var(--line-strong);
+  padding-top: clamp(22px, 3vw, 36px);
+}
+.rop-launch p { font-size: 0.86rem; color: var(--ink-50); margin-top: 12px; }
+
+@media (max-width: 640px) {
+  .rop-facts { grid-template-columns: 1fr; gap: 4px 0; }
+  .rop-facts dd { margin-bottom: 10px; }
+  .rop-terms > div { grid-template-columns: 1fr; gap: 5px; }
+  .rop-flow > li { grid-template-columns: 34px 1fr; }
+}
 
 /* ==========================================================================
    WHATSAPP GROUPS PAGE
@@ -1139,33 +1250,159 @@ body::after {
 .nav-links > a.nav-wa::after { display: none; }
 
 /* ==========================================================================
-   QUIZ — immediate per-answer feedback
+   ROP QUIZ — full-screen red room, one question at a time
+
+   Sits at z-index 480, i.e. UNDER the nav (500), so the nav can simply be
+   translated out of frame and slid back in when the pointer reaches the top
+   strip (.qbox-hot) — no z-index juggling while the quiz is open.
    ========================================================================== */
-.qz-opt { position: relative; display: flex; align-items: flex-start; gap: 9px; }
-.qz-opt .mark { width: 15px; flex-shrink: 0; opacity: 0; font-weight: 700; }
-.qz-opt.correct .mark, .qz-opt.wrong .mark { opacity: 1; }
-.qz-opt.correct { border-color: #4bbd7a; color: #8fe0ae; background: rgba(75, 189, 122, 0.08); }
-.qz-opt.wrong { border-color: var(--red-lite); color: #f0a09a; background: rgba(224, 82, 75, 0.08); }
-.qz.done .qz-opt:not(.correct):not(.wrong) { opacity: 0.45; }
-.qz-why {
-  display: block;
-  overflow: hidden; height: 0;
-  margin-top: 0;
-  font-size: 0.86rem; color: var(--ink-70);
-  border-left: 2px solid var(--gold);
-  padding-left: 0;
+.qbox {
+  position: fixed; inset: 0; z-index: 480;
+  background: var(--red); color: var(--ivory);
+  display: grid; grid-template-rows: auto 1fr;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.4s var(--ease-out), visibility 0.4s;
 }
-.qz.done .qz-why { padding-left: 12px; margin-top: 10px; }
-.qz-why b { color: var(--gold); }
-.quiz-reset {
-  margin-top: 4px;
-  font-size: 0.62rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
-  color: var(--ink-50);
+.qbox.open { opacity: 1; visibility: visible; }
+html.quiz-open, html.quiz-open body { overflow: hidden; }
+html.quiz-open .nav {
+  z-index: 500;
+  background: var(--paper);
   border-bottom: 1px solid var(--line);
-  padding-bottom: 2px;
-  transition: color 0.25s, border-color 0.25s;
+  transform: translateY(-110%);
+  transition: transform 0.35s var(--ease-out);
 }
-.quiz-reset:hover { color: var(--gold); border-color: var(--gold); }
+html.quiz-open.quiz-nav .nav { transform: none; }
+
+/* the handle you reach for to bring the menu back. Hover anywhere in the top
+   strip works (a mousemove on .qbox drives it); this is the visible target,
+   and the tap target for pointers that cannot hover. */
+.qbox-peek {
+  position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+  z-index: 8;
+  width: 150px; height: 26px;
+  display: grid; place-items: start center;
+  transition: transform 0.35s var(--ease-out);
+}
+.qbox-peek::before {
+  content: ""; width: 74px; height: 3px;
+  background: rgba(242, 234, 216, 0.45);
+  transition: width 0.3s, background 0.3s;
+}
+.qbox-peek:hover::before, html.quiz-nav .qbox-peek::before { width: 132px; background: var(--ivory); }
+html.quiz-nav .qbox-peek { transform: translateX(-50%) translateY(62px); }
+
+.qbox-top {
+  position: relative; z-index: 7;
+  display: flex; align-items: center; gap: clamp(14px, 3vw, 32px);
+  padding: clamp(20px, 2.4vw, 30px) var(--gutter) clamp(14px, 1.6vw, 20px);
+  transition: transform 0.35s var(--ease-out);
+}
+/* drop the quiz chrome clear of the nav when it is peeked in */
+html.quiz-nav .qbox-top { transform: translateY(62px); }
+.qbox-meta {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.22em; text-transform: uppercase;
+  opacity: 0.85; white-space: nowrap;
+}
+.qbox-bar { flex: 1; height: 2px; background: rgba(242, 234, 216, 0.28); }
+.qbox-bar i { display: block; height: 100%; width: 0; background: var(--ivory); transition: width 0.45s var(--ease-out); }
+.qbox-exit {
+  flex: none;
+  display: inline-flex; align-items: center; gap: 9px;
+  padding: 9px 15px;
+  border: 1px solid rgba(242, 234, 216, 0.5);
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  transition: background 0.25s, color 0.25s;
+}
+.qbox-exit:hover { background: var(--ivory); color: var(--red); }
+
+.qbox-body {
+  overflow-y: auto;
+  display: grid; align-content: center;
+  padding: clamp(16px, 4vh, 48px) var(--gutter) clamp(40px, 8vh, 80px);
+}
+.qbox-stage { width: 100%; max-width: 780px; margin: 0 auto; }
+
+.tq { display: none; }
+.tq.on { display: block; }
+.tq-n {
+  font-size: 0.6rem; font-weight: 700; letter-spacing: 0.24em; text-transform: uppercase;
+  opacity: 0.75; margin-bottom: 14px;
+}
+.tq-q {
+  font-size: clamp(1.15rem, 2.3vw, 1.65rem);
+  font-weight: 500; line-height: 1.42;
+  margin-bottom: clamp(20px, 3vh, 34px);
+}
+.tq-opts { display: grid; gap: 10px; }
+.tq-opt {
+  display: flex; align-items: flex-start; gap: 14px;
+  text-align: left;
+  padding: 15px 18px;
+  border: 1px solid rgba(242, 234, 216, 0.35);
+  color: var(--ivory);
+  font-size: 0.95rem; line-height: 1.5;
+  transition: background 0.22s, border-color 0.22s, opacity 0.22s;
+}
+.tq-opt:hover { background: rgba(242, 234, 216, 0.1); border-color: var(--ivory); }
+.tq-opt .key {
+  flex: none; width: 24px; height: 24px;
+  display: grid; place-items: center;
+  border: 1px solid rgba(242, 234, 216, 0.5);
+  font-size: 0.6rem; font-weight: 700;
+  transition: background 0.22s, color 0.22s, border-color 0.22s;
+}
+.tq.done .tq-opt { pointer-events: none; }
+.tq.done .tq-opt:not(.correct):not(.wrong) { opacity: 0.4; }
+.tq-opt.correct { border-color: var(--ivory); background: rgba(242, 234, 216, 0.16); }
+.tq-opt.correct .key { background: var(--ivory); color: var(--red); border-color: var(--ivory); }
+.tq-opt.wrong { border-color: rgba(14, 13, 11, 0.55); background: rgba(14, 13, 11, 0.3); }
+.tq-opt.wrong .key { background: var(--paper); color: var(--ivory); border-color: transparent; }
+
+.tq-why {
+  margin-top: clamp(16px, 2.4vh, 26px);
+  border-left: 2px solid var(--ivory);
+  padding-left: 16px;
+  font-size: 0.93rem; line-height: 1.72;
+  display: none;
+}
+.tq.done .tq-why { display: block; }
+.tq-why b {
+  display: block; margin-bottom: 7px;
+  font-size: 0.58rem; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase;
+}
+
+.tq-foot { margin-top: clamp(18px, 3vh, 30px); display: none; }
+.tq.done .tq-foot { display: block; }
+.qbtn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 13px 22px;
+  background: var(--ivory); color: var(--red);
+  font-size: 0.65rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+  transition: transform 0.22s var(--ease-out), background 0.22s, color 0.22s;
+}
+.qbtn:hover { transform: translateX(3px); }
+.qbtn--ghost { background: transparent; color: var(--ivory); border: 1px solid rgba(242, 234, 216, 0.5); }
+.qbtn--ghost:hover { background: var(--ivory); color: var(--red); transform: none; }
+.qbtn + .qbtn { margin-left: 10px; }
+
+.tq-result { display: none; }
+.tq-result.on { display: block; }
+.tq-result .score { font-family: var(--font-display); font-weight: 400; font-size: clamp(4.5rem, 15vw, 11rem); line-height: 0.82; }
+.tq-result .score small { font-size: 0.34em; opacity: 0.7; }
+.tq-result .verdict {
+  font-size: clamp(1.02rem, 2vw, 1.35rem); line-height: 1.5;
+  max-width: 46ch; margin: clamp(14px, 2vh, 20px) 0 clamp(24px, 3.4vh, 38px);
+}
+
+@media (max-width: 560px) {
+  #qbox-title { display: none; }
+  .qbtn { padding: 12px 16px; }
+  .qbtn + .qbtn { margin-left: 8px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .qbox, .qbox-bar i, .qbtn, html.quiz-open .nav { transition: none; }
+}
 
 @media (max-width: 560px) {
   .wa-row { flex-wrap: wrap; }
