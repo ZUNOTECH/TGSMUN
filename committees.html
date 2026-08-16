@@ -62,11 +62,11 @@
         <span class="label label--gold">TGSMUN 2026</span>
         <span class="label">Two wings · Fourteen rooms</span>
       </div>
-      <h1 class="display split">Fourteen rooms,<br /><span class="serif-i">one floor.</span></h1>
+      <h1 class="display split">Fourteen rooms,<br />one floor.</h1>
       <p class="page-sub rv">
         Nine senior committees for Grades 9–12 and a five-committee junior wing.
-        Open any card for its agenda and format — guides and delegate groups are
-        one tap away on every card.
+        Select a committee from the index to see its agenda, format and delegate
+        resources.
       </p>
     </div>
   </section>
@@ -75,35 +75,24 @@
     <div class="container">
       <div class="sec-head">
         <span class="idx">01</span>
-        <span class="label">The Committees</span>
+        <span class="label">Committee Index</span>
         <span class="grow"></span>
-        <span class="label label--red" id="com-count">14 rooms</span>
+        <span class="label label--red">14 rooms</span>
       </div>
 
-      <!-- filter: the grid itself is interactive, not just the cards -->
-      <div class="filter-bar" role="tablist" aria-label="Filter committees by wing">
-        <button class="filter-btn on" data-filter="all" role="tab" aria-selected="true">All · 14</button>
-        <button class="filter-btn" data-filter="senior" role="tab" aria-selected="false">Senior Wing · 9</button>
-        <button class="filter-btn" data-filter="junior" role="tab" aria-selected="false">Junior Wing · 5</button>
-      </div>
-
-      <div class="com-grid" id="com-grid"><!-- rendered from assets/js/committees.js --></div>
-
-      <div class="note-plate rv" style="margin-top: clamp(20px, 2.4vw, 32px)">
-        <b>Note for delegates —</b> agendas, committee sizes, background guides and
-        WhatsApp invites are published here as they are confirmed. Country and
-        portfolio allotments are emailed after registration closes.
+      <div class="dir">
+        <div class="dir-list" id="dir-list" role="tablist" aria-label="Committees"><!-- rendered from assets/js/committees.js --></div>
+        <div class="dir-panel" id="dir-panel" role="tabpanel" aria-live="polite"></div>
       </div>
     </div>
   </section>
 
   <section class="cta">
     <div class="container">
-      <span class="label rv">Preferences are first-come, first-served</span>
-      <h2 class="cta-title display split">Found your <span class="serif-i">room?</span></h2>
+      <span class="label rv">Committee preferences are allotted first-come, first-served</span>
+      <h2 class="cta-title display split">Registration is open.</h2>
       <div class="cta-row rv">
         <a href="register.html" class="btn btn--paper">Register Now <span class="arr">→</span></a>
-        <p class="cta-note">Register early to lock your first-choice committee.</p>
       </div>
     </div>
   </section>
@@ -119,7 +108,7 @@
         <div>
           <span class="label">Conference</span>
           <ul>
-            <li><a href="index.html#letter">Letter from the SG</a></li>
+            <li><a href="index.html#countdown">Dates &amp; Venue</a></li>
             <li><a href="committees.html">Committees</a></li>
             <li><a href="index.html#schedule">Itinerary</a></li>
             <li><a href="secretariat.html">Secretariat</a></li>
@@ -154,126 +143,108 @@
   <script src="assets/js/main.js"></script>
   <script>
   (function () {
-    const grid = document.getElementById("com-grid");
+    const list = document.getElementById("dir-list");
+    const panel = document.getElementById("dir-panel");
     const data = window.TGSMUN_COMMITTEES || [];
     const I = window.TGSMUN_ICONS;
-    const A = window.anime || {};
     const reducedMo = matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (!list || !panel || !data.length) return;
 
-    /* ---------- render cards from the shared data source ---------- */
-    grid.innerHTML = data.map((c, i) => {
+    /* ---------- the index: number, acronym, wing. Nothing else. ---------- */
+    const wingLabel = { senior: "Senior Wing · Grades 9–12", junior: "Junior Wing" };
+    let html = "";
+    let wing = null;
+    data.forEach((c, i) => {
+      if (c.wing !== wing) {
+        wing = c.wing;
+        html += `<div class="dir-wing">${wingLabel[wing]}</div>`;
+      }
+      html += `
+        <button class="dir-row" type="button" role="tab" data-in="0"
+                data-id="${c.id}" aria-selected="false" aria-controls="dir-panel">
+          <span class="n">${String(i + 1).padStart(2, "0")}</span>
+          <span class="ab">${c.abbr}</span>
+          <span class="go" aria-hidden="true">→</span>
+        </button>`;
+    });
+    list.innerHTML = html;
+
+    const rows = [...list.querySelectorAll(".dir-row")];
+    if (window.tgsmunCursorHot) rows.forEach(window.tgsmunCursorHot);
+
+    /* ---------- one panel, rewritten on select ---------- */
+    function render(c) {
       const tags = c.tags.map((t) => {
-        const cls = /Crisis|Special ROP|Double/.test(t) ? "ctag ctag--red"
-                  : /Beginner/.test(t) ? "ctag ctag--gold" : "ctag";
-        return `<span class="${cls}">${t}</span>`;
+        const red = /Crisis|Special ROP|Double/.test(t);
+        return `<span class="p-tag${red ? " p-tag--red" : ""}">${t}</span>`;
       }).join("");
 
       const guide = c.guide
-        ? `<a class="cbtn" href="${c.guide}" target="_blank" rel="noopener">${I.doc} Background Guide</a>`
-        : `<span class="cbtn cbtn--soon" aria-disabled="true">${I.doc} Guide Soon</span>`;
+        ? `<a class="p-btn" href="${c.guide}" target="_blank" rel="noopener">${I.doc} Background Guide</a>`
+        : `<span class="p-btn p-btn--soon" aria-disabled="true">${I.doc} Guide Soon</span>`;
 
       const wa = c.whatsapp
-        ? `<a class="cbtn cbtn--wa" href="${c.whatsapp}" target="_blank" rel="noopener">${I.whatsapp} Join Group</a>`
-        : `<span class="cbtn cbtn--soon" aria-disabled="true">${I.whatsapp} Link Soon</span>`;
+        ? `<a class="p-btn p-btn--wa" href="${c.whatsapp}" target="_blank" rel="noopener">${I.whatsapp} Join Group</a>`
+        : `<span class="p-btn p-btn--soon" aria-disabled="true">${I.whatsapp} Link Soon</span>`;
 
       const rop = c.rop
-        ? `<div class="ccard-row"><span class="label label--gold">Rules of Procedure</span>
-             <p><a href="${c.rop}" style="color:var(--gold);border-bottom:1px solid currentColor">Learn the ROP →</a></p></div>`
-        : "";
+        ? `<a class="p-btn" href="${c.rop}">Rules of Procedure</a>` : "";
 
-      return `
-      <article class="ccard rv" id="${c.id}" data-wing="${c.wing}" style="--i:${i}">
-        <button class="ccard-top" aria-expanded="false" aria-controls="body-${c.id}">
-          ${window.tgsmunCrest(c)}
-          <span class="ccard-id">
-            <b>${c.abbr}</b>
-            <span>${c.name}</span>
-          </span>
-          <span class="ccard-chevron">${I.chevron}</span>
-        </button>
-        <div class="ccard-tags">${tags}</div>
-        <div class="ccard-body" id="body-${c.id}">
-          <div class="ccard-body-inner">
-            <div class="ccard-row"><span class="label label--gold">Agenda</span><p>${c.agenda}</p></div>
-            <div class="ccard-row"><span class="label">Format</span><p>${c.delegation}</p></div>
-            ${rop}
-          </div>
+      panel.innerHTML = `
+        <div class="p-top">
+          <span class="p-mark">${c.abbr}</span>
+          <span class="p-tags">${tags}</span>
         </div>
-        <div class="ccard-actions">${guide}${wa}</div>
-      </article>`;
-    }).join("");
+        <div class="p-row"><span class="label label--gold">Agenda</span><p>${c.agenda}</p></div>
+        <div class="p-row"><span class="label">Format</span><p>${c.delegation}</p></div>
+        <div class="p-actions">${guide}${wa}${rop}</div>`;
 
-    const cards = [...grid.querySelectorAll(".ccard")];
-    if (window.tgsmunCursorHot) cards.forEach(window.tgsmunCursorHot);
-
-    /* ---------- expand / collapse (click or tap — no hover dependency) ---------- */
-    function setOpen(card, open) {
-      const body = card.querySelector(".ccard-body");
-      const btn = card.querySelector(".ccard-top");
-      card.classList.toggle("open", open);
-      btn.setAttribute("aria-expanded", open);
-      const target = open ? body.querySelector(".ccard-body-inner").offsetHeight + 10 : 0;
-      if (A.animate && !reducedMo) {
-        A.animate(body, { height: target + "px", duration: 380, ease: "outQuad" });
-      } else {
-        body.style.height = target + "px";
+      if (window.tgsmunCursorHot) panel.querySelectorAll("a").forEach(window.tgsmunCursorHot);
+      if (window.anime && window.anime.animate && !reducedMo) {
+        window.anime.animate(panel.querySelectorAll(".p-top, .p-row, .p-actions"), {
+          opacity: [0, 1], y: [10, 0], duration: 380, ease: "outQuad",
+          delay: window.anime.stagger(45),
+        });
       }
     }
-    cards.forEach((card) => {
-      card.querySelector(".ccard-top").addEventListener("click", () => {
-        setOpen(card, !card.classList.contains("open"));
-      });
-    });
 
-    /* ---------- filter ---------- */
-    const countEl = document.getElementById("com-count");
-    document.querySelectorAll(".filter-btn").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const f = btn.dataset.filter;
-        document.querySelectorAll(".filter-btn").forEach((b) => {
-          b.classList.toggle("on", b === btn);
-          b.setAttribute("aria-selected", b === btn);
-        });
-        const shown = [];
-        cards.forEach((card) => {
-          const show = f === "all" || card.dataset.wing === f;
-          card.hidden = !show;
-          if (show) shown.push(card);
-        });
-        countEl.textContent = shown.length + (shown.length === 1 ? " room" : " rooms");
-        if (A.animate && A.stagger && !reducedMo) {
-          A.animate(shown, {
-            opacity: [0, 1], y: [14, 0], duration: 420, ease: "outQuad", delay: A.stagger(40),
-          });
-        }
+    function select(id, fromUser) {
+      const c = data.find((x) => x.id === id) || data[0];
+      rows.forEach((r) => {
+        const on = r.dataset.id === c.id;
+        r.classList.toggle("on", on);
+        r.setAttribute("aria-selected", on);
       });
-    });
+      render(c);
+      if (!fromUser) return;
+      if (matchMedia("(max-width: 860px)").matches) {
+        panel.scrollIntoView({ block: "nearest", behavior: reducedMo ? "auto" : "smooth" });
+      }
+      if (location.hash.slice(1) !== c.id) history.replaceState(null, "", "#" + c.id);
+    }
 
-    /* ---------- entrance stagger on scroll-into-view ---------- */
-    if (A.animate && A.stagger && !reducedMo) {
+    rows.forEach((r) => r.addEventListener("click", () => select(r.dataset.id, true)));
+
+    /* ---------- small scroll animation: rows arrive as the list comes up ---------- */
+    if (!reducedMo) {
       const seen = new WeakSet();
-      const gio = new IntersectionObserver((entries) => {
-        const batch = entries.filter((e) => e.isIntersecting && !seen.has(e.target)).map((e) => {
-          seen.add(e.target); gio.unobserve(e.target); return e.target;
+      const io = new IntersectionObserver((entries) => {
+        const batch = entries.filter((e) => e.isIntersecting && !seen.has(e.target));
+        batch.forEach((e, i) => {
+          seen.add(e.target);
+          io.unobserve(e.target);
+          setTimeout(() => e.target.setAttribute("data-in", "1"), i * 55);
         });
-        if (!batch.length) return;
-        A.animate(batch, { opacity: [0, 1], y: [22, 0], duration: 520, ease: "outQuad", delay: A.stagger(55) });
-      }, { threshold: 0.1 });
-      cards.forEach((c) => { c.style.opacity = 0; gio.observe(c); });
+      }, { threshold: 0.2, rootMargin: "0px 0px -40px 0px" });
+      rows.forEach((r) => io.observe(r));
+    } else {
+      rows.forEach((r) => r.setAttribute("data-in", "1"));
     }
 
-    /* ---------- deep links: committees.html#aippm opens that card ---------- */
-    function openFromHash() {
-      const id = location.hash.slice(1);
-      const card = id && document.getElementById(id);
-      if (card && card.classList.contains("ccard") && !card.classList.contains("open")) {
-        card.style.opacity = 1;
-        setOpen(card, true);
-        card.scrollIntoView({ block: "center", behavior: reducedMo ? "auto" : "smooth" });
-      }
-    }
-    setTimeout(openFromHash, 500);
-    addEventListener("hashchange", openFromHash);
+    const initial = data.some((c) => c.id === location.hash.slice(1))
+      ? location.hash.slice(1) : data[0].id;
+    select(initial, false);
+    addEventListener("hashchange", () => select(location.hash.slice(1), true));
   })();
   </script>
 </body>

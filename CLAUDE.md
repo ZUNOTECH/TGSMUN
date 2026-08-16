@@ -10,7 +10,10 @@ Static site (plain HTML/CSS/JS, no build step) for the TGS Model United Nations 
 - Committee data: `assets/js/committees.js` is the SINGLE SOURCE OF TRUTH — `committees.html` and `whatsapp.html` both render from it. Add a committee, a guide URL or a WhatsApp invite there only.
 - One shared scroll pipeline in `main.js` (single passive listener → rAF batch); register new effects with `addScrollTask()` rather than adding listeners
 - Nav / loader / curtain / menu-overlay / footer markup is duplicated per page — edit all 6 pages when changing any of them
-- `index.html` has no loader — it opens with `.intro-ov`, a fixed black overlay: gold gavel drawn by `createDrawable`, a bang, then a fixed 1200ms circular mask wipe (never scroll-scrubbed). One-time per tab; subpages keep the loader.
+- All 6 pages share the red `.loader` (TGSMUN + convening percentage), once per tab
+- `index.html` landing is `.land` — ONE element (the TGSMUN 2026 wordmark) on a 170vh sticky stage. A scroll task in `main.js` tips it in perspective (`rotateX`/`translateZ`/blur) so it recedes and hands off to `.land-next`, which carries the date, venue and CTAs. Keep the fade finishing at p≈1 or a black dead-zone opens up.
+- `committees.html` is a directory, not a card grid: `.dir-list` (number + acronym only, grouped by wing) drives one sticky `.dir-panel`. No full committee names anywhere on the site. Rows reveal on scroll via `data-in`; on ≤860px the panel moves above the list and stays sticky.
+- No italics and no pink anywhere — `.serif-i` survives only as a neutered no-op hook.
 
 ## Design system (event theme: black & red with gold accents)
 

@@ -54,7 +54,7 @@ const seen = sessionStorage.getItem("tgsmun-seen");
 
 function pageIn() {
   document.documentElement.classList.add("ready");
-  document.querySelectorAll(".hero .split, .page-hero .split").forEach((el) => el.classList.add("in"));
+  document.querySelectorAll(".hero .split, .page-hero .split, .land .split").forEach((el) => el.classList.add("in"));
 }
 
 if (loader && !seen && !reduced) {
@@ -114,7 +114,7 @@ if (!isTouch && !reduced) {
     el.addEventListener("mouseenter", () => ring.classList.add("hot"));
     el.addEventListener("mouseleave", () => ring.classList.remove("hot"));
   };
-  document.querySelectorAll("a, button, .com-card, .sec-card, .ccard").forEach(hot);
+  document.querySelectorAll("a, button, .com-card, .sec-card, .dir-row").forEach(hot);
   window.tgsmunCursorHot = hot; // for dynamically rendered cards
 }
 
@@ -175,7 +175,7 @@ const io = new IntersectionObserver((entries) => {
     if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
   });
 }, { threshold: 0.12, rootMargin: "0px 0px -30px 0px" });
-document.querySelectorAll(".rv, .clip, .sec-head, .split:not(.hero .split):not(.page-hero .split)")
+document.querySelectorAll(".rv, .clip, .sec-head, .split:not(.hero .split):not(.page-hero .split):not(.land .split)")
   .forEach((el) => io.observe(el));
 
 /* ============ 4. stat counters — scroll-triggered, staggered ============ */
@@ -246,6 +246,34 @@ if (cd) {
   tick();
   setInterval(tick, 1000);
 }
+
+/* ============ 5b. landing — single element, 3D scroll hand-off ============
+   The whole landing is one mark. Scrolling tips it back in perspective and
+   pushes it away from the camera, so the next section arrives *through* it
+   rather than under it. Everything is driven off the shared scroll ticker. */
+(function () {
+  const land = document.getElementById("land");
+  const mark = document.getElementById("land-mark");
+  if (!land || !mark) return;
+  const hint = document.getElementById("land-hint");
+  if (reduced) return;
+
+  addScrollTask(() => {
+    const total = land.offsetHeight - innerHeight;
+    if (total <= 0) return;
+    const p = Math.max(0, Math.min(1, -land.getBoundingClientRect().top / total));
+    // ease the tail so the mark lingers a beat before it goes
+    const e = p * p * (3 - 2 * p);
+    const rotX = e * -62;          // tips away from the viewer
+    const z = e * -560;            // recedes into the stage
+    const y = e * -12;             // drifts up as it goes
+    const blur = e * 6;
+    mark.style.transform = `translateY(${y}vh) translateZ(${z}px) rotateX(${rotX}deg)`;
+    mark.style.opacity = String(Math.max(0, 1 - Math.max(0, e - 0.6) / 0.4));
+    mark.style.filter = blur > 0.4 ? `blur(${blur.toFixed(2)}px)` : "none";
+    if (hint) hint.style.opacity = String(Math.max(0, 1 - p * 4));
+  });
+})();
 
 /* ============ 6. statement scrub (word-by-word fill) ============ */
 document.querySelectorAll("[data-scrub]").forEach((el) => {
