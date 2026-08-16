@@ -14,34 +14,15 @@
 </head>
 <body>
 
-  <!-- ============ INTRO OVERLAY: black → gold pencil draw → bang → circle wipe ============ -->
-  <div class="intro-ov" aria-hidden="true">
-    <div class="intro-stage">
-      <svg class="gavel-svg" viewBox="0 0 1000 800" xmlns="http://www.w3.org/2000/svg">
-        <g class="shock">
-          <circle cx="445" cy="530" r="80" stroke="#d9a441" stroke-width="3" />
-          <circle cx="445" cy="530" r="80" stroke="#e0524b" stroke-width="2" />
-          <circle cx="445" cy="530" r="80" stroke="#d9a441" stroke-width="1.5" />
-        </g>
-
-        <!-- sound block: domed puck on a stepped base -->
-        <rect class="ln" x="345" y="525" width="200" height="58" rx="29" />
-        <rect class="ln" x="305" y="583" width="280" height="40" rx="20" />
-        <rect class="ln" x="265" y="623" width="360" height="40" rx="20" />
-
-        <!-- the gavel, swinging about its grip -->
-        <g class="g-swing">
-          <rect class="ln" x="430" y="284" width="270" height="32" rx="16" />
-          <rect class="ln" x="690" y="272" width="58" height="56" rx="20" />
-          <rect class="ln" x="310" y="190" width="140" height="220" rx="28" />
-          <line class="ln" x1="310" y1="248" x2="450" y2="248" />
-          <line class="ln" x1="310" y1="352" x2="450" y2="352" />
-        </g>
-      </svg>
-      <p class="intro-cap label">The Gaudium School Model United Nations · Fifth Edition</p>
+  <!-- red preloader: TGSMUN + convening percentage -->
+  <div class="loader">
+    <div class="loader-inner">
+      <div class="loader-word" aria-hidden="true">
+        <span style="animation-delay:.05s">T</span><span style="animation-delay:.1s">G</span><span style="animation-delay:.15s">S</span><span style="animation-delay:.2s">M</span><span style="animation-delay:.25s">U</span><span style="animation-delay:.3s">N</span>
+      </div>
+      <div class="loader-count">Convening — 000%</div>
     </div>
   </div>
-
   <div class="curtain"></div>
 
   <header class="nav">
@@ -78,31 +59,45 @@
     <a href="index.html#contact"><i>08</i> Contact</a>
   </div>
 
-  <!-- ================= HERO ================= -->
+  <!-- ================= LANDING — deliberately simple ================= -->
   <section class="hero">
     <div class="container hero-inner">
       <div class="hero-meta-top">
         <span class="label"><b>●</b> 29–30 August 2026</span>
-        <span class="label">The Gaudium School · Hyderabad</span>
-        <span class="label">Fifth Edition</span>
+        <span class="label">The Gaudium School · Kollur Campus, Hyderabad</span>
       </div>
 
-      <h1 class="hero-title display split">
-        <span class="row">The World,</span>
-        <span class="row"><span class="serif-i">in session.</span></span>
+      <h1 class="hero-title hero-title--mark display split">
+        TGSMUN <span class="yr">2026</span>
       </h1>
 
+      <p class="hero-standfirst rv">
+        The fifth edition of <b>The Gaudium School Model United Nations</b> —
+        two days, fourteen committees, seven hundred delegates.
+      </p>
+
       <div class="hero-bar rv">
-        <p class="hero-sub">
-          <b>TGSMUN</b> is the flagship Model United Nations conference of
-          The Gaudium School, Hyderabad — two days, fourteen committees,
-          and the region's sharpest young delegates.
-        </p>
         <div class="hero-ctas">
           <a href="register.html" class="btn btn--solid">Register <span class="arr">→</span></a>
           <a href="committees.html" class="btn">The Committees</a>
         </div>
         <span class="label">Scroll ↓</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COUNTDOWN — its own section, straight after the landing ================= -->
+  <section class="count-sec" id="countdown">
+    <div class="container count-sec-inner">
+      <div class="when rv">
+        <span class="label label--gold">Convening in</span>
+        <span class="display">29–30 August 2026</span>
+      </div>
+      <div class="countdown countdown--big rv" aria-label="Countdown to conference">
+        <div class="count-cell" data-cd="d"><div class="digits"></div><span class="unit">Days</span></div>
+        <div class="count-cell" data-cd="h"><div class="digits"></div><span class="unit">Hours</span></div>
+        <div class="count-cell" data-cd="m"><div class="digits"></div><span class="unit">Min</span></div>
+        <div class="count-cell" data-cd="s"><div class="digits"></div><span class="unit">Sec</span></div>
       </div>
     </div>
   </section>
@@ -130,77 +125,13 @@
     </div>
   </section>
 
-  <!-- ================= 01 · LETTER FROM THE SECRETARY-GENERAL ================= -->
-  <section class="section" id="letter">
-    <div class="container">
-      <div class="sec-head">
-        <span class="idx">01</span>
-        <span class="label">Letter from the Secretary-General</span>
-        <span class="grow"></span>
-        <span class="label label--gold">Fifth Edition</span>
-      </div>
-      <div class="about-grid">
-        <div>
-          <p class="about-lede split">
-            Five editions in, TGSMUN has grown into Hyderabad's most spirited
-            stage for <span class="serif-i">young diplomacy.</span>
-          </p>
-          <div class="about-copy rv">
-            <p>
-              Our delegates don't just debate — they research, caucus, draft and build
-              consensus under pressure, developing the confidence and empathy that
-              real-world diplomacy demands.
-            </p>
-            <p>
-              Whether it's your first placard or your fifteenth gavel, there is a seat
-              across our senior and junior committees with your name on it.
-            </p>
-            <a href="register.html" class="btn" style="margin-top:12px">Join the Fifth Edition <span class="arr">→</span></a>
-          </div>
-        </div>
-
-        <div class="letter-plate clip">
-          <span class="label">From the Secretary-General</span>
-          <blockquote>
-            <p>Dear Delegates,</p>
-            <p>
-              It is my privilege to welcome you to the fifth edition of the
-              Gaudium School Model United Nations. For five years this conference has
-              been built, argued over and gavelled into being entirely by students —
-              and every August it hands the floor back to you.
-            </p>
-            <p>
-              Over two days you will represent people whose convictions may be nothing
-              like your own. That is the whole exercise. The best delegates in this
-              room will not be the loudest; they will be the ones who research
-              relentlessly, listen carefully, and find the sentence a divided committee
-              can finally agree to sign.
-            </p>
-            <p>
-              <em>This year our theme — Dialogue over Division — asks each of us to
-              listen before we speak, and to seek common ground before claiming
-              victory. I look forward to watching you rise to that challenge.</em>
-            </p>
-          </blockquote>
-          <div class="letter-sign">
-            <span class="seal">SG</span>
-            <div>
-              <b>Sneha Kolluri</b>
-              <span>Secretary-General · TGSMUN 2026</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 02 · COMMITTEES (pinned horizontal strip) ================= -->
+  <!-- ================= 01 · COMMITTEES (all 14, rendered from committees.js) ================= -->
   <section class="hpin" id="committees">
     <div class="hpin-sticky">
       <div class="hpin-head">
         <div class="container">
           <div class="sec-head" style="margin-bottom:0">
-            <span class="idx">02</span>
+            <span class="idx">01</span>
             <span class="label">Committees</span>
             <span class="grow"></span>
             <span class="label label--red">Scroll →</span>
@@ -208,86 +139,9 @@
         </div>
       </div>
 
-      <div class="hpin-track">
-        <a class="com-card" href="committees.html#unsc">
-          <span class="no">C·01</span><span class="abbr">UNSC</span>
-          <span class="full">United Nations Security Council</span>
-          <p class="agenda">Agenda to be announced.</p>
-          <span class="foot"><span>Double delegation</span><span class="arr">→</span></span>
-        </a>
-        <a class="com-card" href="committees.html#unhrc">
-          <span class="no">C·02</span><span class="abbr">UNHRC</span>
-          <span class="full">Human Rights Council</span>
-          <p class="agenda">Agenda to be announced.</p>
-          <span class="foot"><span>Senior</span><span class="arr">→</span></span>
-        </a>
-        <a class="com-card" href="committees.html#disec">
-          <span class="no">C·03</span><span class="abbr">DISEC</span>
-          <span class="full">Disarmament &amp; International Security</span>
-          <p class="agenda">Agenda to be announced.</p>
-          <span class="foot"><span>Senior</span><span class="arr">→</span></span>
-        </a>
-        <a class="com-card" href="committees.html#aippm">
-          <span class="no">C·04</span><span class="abbr">AIPPM</span>
-          <span class="full">All India Political Parties Meet</span>
-          <p class="agenda">Agenda to be announced.</p>
-          <span class="foot"><span>Special ROP</span><span class="arr">→</span></span>
-        </a>
-        <a class="com-card" href="committees.html#hcc">
-          <span class="no">C·05</span><span class="abbr">HCC</span>
-          <span class="full">Historic Crisis Committee</span>
-          <p class="agenda">Briefing to be announced.</p>
-          <span class="foot"><span>Crisis</span><span class="arr">→</span></span>
-        </a>
-        <a class="com-card" href="committees.html#oas">
-          <span class="no">C·06</span><span class="abbr">OAS</span>
-          <span class="full">Organization of American States</span>
-          <p class="agenda">Agenda to be announced.</p>
-          <span class="foot"><span>Senior</span><span class="arr">→</span></span>
-        </a>
-        <a class="com-card" href="committees.html#opec">
-          <span class="no">C·07</span><span class="abbr">OPEC</span>
-          <span class="full">Org. of the Petroleum Exporting Countries</span>
-          <p class="agenda">Crisis briefing to be announced.</p>
-          <span class="foot"><span>Crisis</span><span class="arr">→</span></span>
-        </a>
-        <a class="com-card" href="committees.html#nba">
-          <span class="no">C·08</span><span class="abbr">NBA Draft</span>
-          <span class="full">All-Time Greats Draft</span>
-          <p class="agenda">Build the greatest roster in history — and defend every pick.</p>
-          <span class="foot"><span>Semi-crisis</span><span class="arr">→</span></span>
-        </a>
-        <a class="com-card" href="committees.html#ip">
-          <span class="no">C·09</span><span class="abbr">Press</span>
-          <span class="full">International Press</span>
-          <p class="agenda">Reportage, photography and caricature across every committee room.</p>
-          <span class="foot"><span>Press corps</span><span class="arr">→</span></span>
-        </a>
-        <a class="com-card" href="committees.html#junior">
-          <span class="no">C·10–14</span><span class="abbr">Junior Wing</span>
-          <span class="full">UNICEF · UNESCO · WHO · CSW · UNOOSA</span>
-          <p class="agenda">Five committees built for younger delegates finding their voice.</p>
-          <span class="foot"><span>5 committees</span><span class="arr">→</span></span>
-        </a>
-      </div>
+      <div class="hpin-track"><!-- all 14 committees, rendered from assets/js/committees.js --></div>
 
       <div class="hpin-progress"><i></i></div>
-    </div>
-  </section>
-
-  <!-- ================= COUNTDOWN ================= -->
-  <section class="count-sec">
-    <div class="container count-sec-inner">
-      <div class="when rv">
-        <span class="label label--gold">Convening in</span>
-        <span class="display">29–30 August 2026</span>
-      </div>
-      <div class="countdown countdown--big rv" aria-label="Countdown to conference">
-        <div class="count-cell" data-cd="d"><div class="digits"></div><span class="unit">Days</span></div>
-        <div class="count-cell" data-cd="h"><div class="digits"></div><span class="unit">Hours</span></div>
-        <div class="count-cell" data-cd="m"><div class="digits"></div><span class="unit">Min</span></div>
-        <div class="count-cell" data-cd="s"><div class="digits"></div><span class="unit">Sec</span></div>
-      </div>
     </div>
   </section>
 
@@ -298,11 +152,11 @@
     </div>
   </div>
 
-  <!-- ================= 03 · ITINERARY ================= -->
+  <!-- ================= 02 · ITINERARY ================= -->
   <section class="section" id="schedule">
     <div class="container">
       <div class="sec-head">
-        <span class="idx">03</span>
+        <span class="idx">02</span>
         <span class="label">Itinerary</span>
         <span class="grow"></span>
         <span class="label">Two Days</span>
@@ -338,14 +192,14 @@
     </div>
   </section>
 
-  <!-- ================= 04 · FAQ ================= -->
-  <section class="section" id="faq" style="padding-top:0">
+  <!-- ================= 03 · FAQ (red) ================= -->
+  <section class="section section--red" id="faq">
     <div class="container">
       <div class="sec-head">
-        <span class="idx">04</span>
+        <span class="idx">03</span>
         <span class="label">Questions</span>
         <span class="grow"></span>
-        <span class="label label--red">Ask Anything</span>
+        <span class="label">Ask Anything</span>
       </div>
       <div class="faq-wrap">
         <div class="faq-item rv">
@@ -368,21 +222,6 @@
           <button class="faq-q" aria-expanded="false">What awards are given?<span class="plus"></span></button>
           <div class="faq-a"><p>Best Delegate, High Commendation and Special Mention in every committee, plus verbal mentions — and the Best Delegation trophy for the top-performing school.</p></div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CTA ================= -->
-  <section class="cta">
-    <div class="container">
-      <span class="label rv">Registration open — until capacity is reached</span>
-      <h2 class="cta-title display split">
-        Take the <span class="serif-i">floor.</span><br />
-        <span class="outline">Make it count.</span>
-      </h2>
-      <div class="cta-row rv">
-        <a href="register.html" class="btn btn--paper">Register as a Delegate <span class="arr">→</span></a>
-        <p class="cta-note">Seats and committee preferences are honoured strictly first-come, first-served.</p>
       </div>
     </div>
   </section>
@@ -418,10 +257,10 @@
         <div>
           <span class="label">Conference</span>
           <ul>
-            <li><a href="index.html#letter">Letter from the SG</a></li>
             <li><a href="committees.html">Committees</a></li>
             <li><a href="index.html#schedule">Itinerary</a></li>
             <li><a href="secretariat.html">Secretariat</a></li>
+            <li><a href="index.html#countdown">Countdown</a></li>
           </ul>
         </div>
         <div>
@@ -449,6 +288,7 @@
   </footer>
 
   <script src="assets/js/vendor/anime.umd.min.js"></script>
+  <script src="assets/js/committees.js"></script>
   <script src="assets/js/main.js"></script>
 </body>
 </html>

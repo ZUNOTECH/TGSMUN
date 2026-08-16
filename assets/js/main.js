@@ -9,12 +9,11 @@
      1  preloader / curtain page transitions
      2  custom cursor · nav · mobile menu
      3  split-text + reveal observers
-     4  gavel INTRO overlay (timed, not scroll-scrubbed)
-     5  stat counters (scroll-triggered, staggered)
-     6  odometer countdown
-     7  statement scrub
-     8  pinned committees strip (smoothed scrub)
-     9  FAQ
+     4  stat counters (scroll-triggered, staggered)
+     5  odometer countdown
+     6  statement scrub
+     7  pinned committees strip (smoothed scrub, rendered from committee data)
+     8  FAQ
    The marquee runs on a constant CSS animation and is deliberately NOT
    coupled to scroll velocity — see .marquee-track in style.css.
    ========================================================================== */
@@ -51,7 +50,6 @@ function addScrollTask(fn) { scrollTasks.push(fn); fn(window.scrollY); }
 /* ============ 1. preloader + curtain page transitions ============ */
 const loader = document.querySelector(".loader");
 const curtain = document.querySelector(".curtain");
-const introOv = document.querySelector(".intro-ov");
 const seen = sessionStorage.getItem("tgsmun-seen");
 
 function pageIn() {
@@ -74,13 +72,11 @@ if (loader && !seen && !reduced) {
 } else {
   if (loader) loader.remove();
   sessionStorage.setItem("tgsmun-seen", "1");
-  // the intro overlay owns the reveal on the homepage; don't double-fire
-  const introWillRun = introOv && !reduced && !sessionStorage.getItem("tgsmun-intro");
   if (curtain && !reduced) {
     curtain.classList.add("leave");
-    if (!introWillRun) setTimeout(pageIn, 140);
+    setTimeout(pageIn, 140);
     setTimeout(() => curtain.classList.remove("leave"), 780);
-  } else if (!introWillRun) {
+  } else {
     pageIn();
   }
 }
@@ -182,79 +178,7 @@ const io = new IntersectionObserver((entries) => {
 document.querySelectorAll(".rv, .clip, .sec-head, .split:not(.hero .split):not(.page-hero .split)")
   .forEach((el) => io.observe(el));
 
-/* ============ 4. GAVEL INTRO — black → gold draw → bang → timed circle wipe ============
-   One-time per tab. Fixed overlay above everything; hidden when done.
-   The circle wipe runs on its own clock (>=1000ms) — never scroll-scrubbed. */
-if (introOv) {
-  const alreadyPlayed = sessionStorage.getItem("tgsmun-intro");
-  if (reduced || alreadyPlayed || !hasAnime) {
-    introOv.hidden = true;
-    pageIn();
-  } else {
-    sessionStorage.setItem("tgsmun-intro", "1");
-    document.body.style.overflow = "hidden"; // no scrolling behind the overlay
-
-    const strokes = introOv.querySelectorAll(".gavel-svg .ln");
-    const swing = introOv.querySelector(".g-swing");
-    const rings = introOv.querySelectorAll(".shock circle");
-    const cap = introOv.querySelector(".intro-cap");
-    const wipe = { r: 0 };
-    const REST = 12, LIFT = 32, HIT = -22; // deg: +raises the head, -drives it down
-    const mob = isMobile();
-
-    // mobile: fewer simultaneous strokes + shorter draw, so mid-range phones stay at 60fps
-    const drawDur = mob ? 950 : 1250;
-    const stepGap = mob ? 70 : 95;
-
-    if (swing) swing.style.transform = "rotate(" + REST + "deg)";
-
-    const tl = createTimeline({
-      defaults: { ease: "outQuad" },
-      onComplete: () => {
-        introOv.hidden = true;
-        document.body.style.overflow = "";
-        requestAnimationFrame(runScrollTasks);
-      },
-    });
-
-    // 1 · draw the gavel from nothing, stroke by stroke
-    tl.add(createDrawable(strokes), {
-      draw: ["0 0", "0 1"],
-      duration: drawDur,
-      ease: "inOutQuad",
-      delay: stagger(stepGap),
-    })
-      .add(cap, { opacity: [0, 1], duration: 420 }, "-=500")
-      // 2 · wind up
-      .add(swing, { rotate: [REST, LIFT], duration: 340, ease: "outQuad" }, "+=120")
-      // 3 · BANG
-      .add(swing, { rotate: HIT, duration: 190, ease: "inExpo" })
-      .call(() => {
-        introOv.classList.add("shake");
-        setTimeout(() => introOv.classList.remove("shake"), 340);
-      })
-      // 4 · impact rings
-      .add(rings, {
-        opacity: [{ to: 0.9, duration: 60 }, { to: 0, duration: 700 }],
-        scale: [0.2, 2.5],
-        duration: 760,
-        ease: "outQuad",
-        delay: stagger(110),
-      }, "<")
-      .add(swing, { rotate: HIT - 5, duration: 240, ease: "outElastic(1, .5)" }, "<")
-      .add(cap, { opacity: 0, duration: 320 }, "<")
-      // 5 · circular wipe — fixed 1200ms, independent of scroll
-      .add(wipe, {
-        r: 155,
-        duration: 1200,
-        ease: "inOutQuad",
-        onUpdate: () => introOv.style.setProperty("--holeR", wipe.r.toFixed(2) + "vmax"),
-      }, "+=140")
-      .call(() => pageIn(), "-=900");
-  }
-}
-
-/* ============ 5. stat counters — scroll-triggered, staggered ============ */
+/* ============ 4. stat counters — scroll-triggered, staggered ============ */
 const statEls = [...document.querySelectorAll("[data-count]")];
 if (statEls.length) {
   const fmt = (n) => Math.round(n).toLocaleString("en-IN");
@@ -281,7 +205,7 @@ if (statEls.length) {
   statEls.forEach((el) => sio.observe(el));
 }
 
-/* ============ 6. odometer countdown ============ */
+/* ============ 5. odometer countdown ============ */
 const cd = document.querySelector(".countdown");
 if (cd) {
   const cells = { d: 3, h: 2, m: 2, s: 2 };
@@ -323,7 +247,7 @@ if (cd) {
   setInterval(tick, 1000);
 }
 
-/* ============ 7. statement scrub (word-by-word fill) ============ */
+/* ============ 6. statement scrub (word-by-word fill) ============ */
 document.querySelectorAll("[data-scrub]").forEach((el) => {
   const text = el.querySelector(".statement-text");
   if (!text) return;
@@ -345,13 +269,28 @@ document.querySelectorAll("[data-scrub]").forEach((el) => {
   });
 });
 
-/* ============ 8. pinned committees strip — smoothed scroll scrub ============
+/* ============ 7. pinned committees strip — smoothed scroll scrub ============
    Previously the transform was written straight from raw scroll position, which
    made fast flicks jump. Now scroll sets a *target* and a rAF loop eases toward
    it, so the strip stays smooth at any scroll speed. */
 const hpin = document.querySelector(".hpin");
 if (hpin) {
   const track = hpin.querySelector(".hpin-track");
+
+  // cards come from assets/js/committees.js so the strip always shows every
+  // committee — senior and junior — and can never drift from the data
+  const comData = window.TGSMUN_COMMITTEES;
+  if (track && comData && !track.children.length) {
+    track.innerHTML = comData.map((c, i) => `
+      <a class="com-card" href="committees.html#${c.id}">
+        <span class="no">C·${String(i + 1).padStart(2, "0")}</span>
+        <span class="abbr">${c.abbr}</span>
+        <span class="full">${c.name}</span>
+        <p class="agenda">${c.agenda}</p>
+        <span class="foot"><span>${c.wing === "junior" ? "Junior Wing" : c.tags[0] || "Senior Wing"}</span><span class="arr">→</span></span>
+      </a>`).join("");
+    if (window.tgsmunCursorHot) track.querySelectorAll(".com-card").forEach(window.tgsmunCursorHot);
+  }
   const bar = hpin.querySelector(".hpin-progress i");
   let targetX = 0, currentX = 0, dist = 0, raf = null;
 
@@ -388,7 +327,7 @@ if (hpin) {
   mqMobile.addEventListener("change", measure);
 }
 
-/* ============ 9. FAQ ============ */
+/* ============ 8. FAQ ============ */
 document.querySelectorAll(".faq-item").forEach((item) => {
   const q = item.querySelector(".faq-q");
   const a = item.querySelector(".faq-a");

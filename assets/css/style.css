@@ -1106,47 +1106,6 @@ body::after {
 @media (max-width: 700px) { .qz-opts { grid-template-columns: 1fr; } }
 
 /* ==========================================================================
-   INTRO OVERLAY — black screen · gold pencil draw · bang · timed circle wipe
-   Fixed overlay above everything; removed from the flow once it completes.
-   ========================================================================== */
-.intro-ov {
-  position: fixed; inset: 0; z-index: 1200;
-  background: #000;
-  display: grid; place-items: center;
-  --holeR: 0px;
-  -webkit-mask-image: radial-gradient(circle at 50% 52%, transparent var(--holeR), #000 calc(var(--holeR) + 1px));
-  mask-image: radial-gradient(circle at 50% 52%, transparent var(--holeR), #000 calc(var(--holeR) + 1px));
-}
-.intro-ov[hidden] { display: none !important; }
-.intro-ov.shake { animation: ov-shake 0.3s var(--ease-out); }
-@keyframes ov-shake {
-  0% { transform: translate3d(0,0,0); }
-  30% { transform: translate3d(0,8px,0); }
-  60% { transform: translate3d(0,-3px,0); }
-  100% { transform: translate3d(0,0,0); }
-}
-.intro-stage { position: relative; width: min(74vmin, 620px); }
-.gavel-svg { width: 100%; height: auto; display: block; overflow: visible; }
-.gavel-svg .ln {
-  fill: none;
-  stroke: var(--gold);
-  stroke-width: 6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  vector-effect: non-scaling-stroke;
-}
-.gavel-svg .g-swing { transform-box: view-box; transform-origin: 700px 300px; transform: rotate(12deg); }
-.gavel-svg .shock circle { fill: none; opacity: 0; transform-box: fill-box; transform-origin: center; }
-.intro-cap {
-  position: absolute; left: 50%; bottom: -12%;
-  transform: translateX(-50%);
-  text-align: center; white-space: nowrap;
-  color: rgba(217, 164, 65, 0.85);
-  opacity: 0;
-}
-@media (prefers-reduced-motion: reduce) { .intro-ov { display: none !important; } }
-
-/* ==========================================================================
    COMMITTEES PAGE — logo-led interactive grid
    ========================================================================== */
 .filter-bar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: clamp(18px, 2.2vw, 30px); }
@@ -1310,3 +1269,40 @@ body::after {
   .ccard-actions { grid-template-columns: 1fr; }
   .wa-row { flex-wrap: wrap; }
 }
+
+/* ==========================================================================
+   RED SECTION — used by the homepage FAQ
+   ========================================================================== */
+.section--red { background: var(--red); color: var(--ivory); }
+.section--red .sec-head::before { background: rgba(242, 234, 216, 0.8); }
+.section--red .sec-head .idx { color: var(--ivory); }
+.section--red .sec-head .label { color: var(--ivory); }
+.section--red .label { color: rgba(242, 234, 216, 0.75); }
+.section--red .label--gold,
+.section--red .label--red { color: var(--ivory); }
+
+.section--red .faq-item { border-bottom-color: rgba(242, 234, 216, 0.28); }
+.section--red .faq-item:first-child { border-top-color: rgba(242, 234, 216, 0.28); }
+.section--red .faq-q { color: var(--ivory); }
+.section--red .faq-q:hover { color: var(--gold); }
+.section--red .faq-q .plus { border-color: rgba(242, 234, 216, 0.5); }
+.section--red .faq-item.open .plus { background: var(--ivory); border-color: var(--ivory); color: var(--red); }
+.section--red .faq-a p { color: rgba(242, 234, 216, 0.82); }
+
+/* ==========================================================================
+   COUNTDOWN as its own section, directly under the landing
+   ========================================================================== */
+.count-sec { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--paper-2); }
+.count-sec .when .display { font-size: clamp(1.7rem, 3.2vw, 2.8rem); }
+.countdown--big .digit-col { color: var(--gold); }
+
+/* simple landing */
+.hero-title--mark { font-size: clamp(4.2rem, 15vw, 13rem); line-height: 0.92; }
+.hero-title--mark .yr { color: var(--red-lite); }
+.hero-standfirst {
+  font-size: clamp(0.98rem, 1.5vw, 1.2rem);
+  color: var(--ink-70);
+  max-width: 46ch;
+  margin-top: clamp(12px, 1.6vw, 20px);
+}
+.hero-standfirst b { color: var(--ink); font-weight: 600; }
